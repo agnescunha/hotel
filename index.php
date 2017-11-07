@@ -1,5 +1,5 @@
 <?php
-    include 'model\Banco.php';
+    /*include 'model\Banco.php';
     
     $teste = new Banco();
     $clientes = $teste->pesquisarCliente('nome','Robson');
@@ -8,6 +8,6 @@
         echo 'ID: '.$a['id'].'<br>';
         echo 'NOME: '.$a['nome'].'<br>';
         echo 'RG:'.$a['rg'].'<br>';
-    }
-    
+    }*/
+    header('location:view\telas\home.php');
 ?>
