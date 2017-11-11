@@ -8,41 +8,53 @@
     <title>DW2</title>
     
     <link rel="stylesheet" href="../style/estilo.css" />
+    <link rel="stylesheet" href="../style/menu_central.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     
-
 </head>
 <body>
-    <div class="menu_cabecalho">
-        <nav class="navbar navbar-default">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand">Brand</a>
+<div id="tudo">
+        <div class="menu_cabecalho">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbarCollapse" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Sobre N√≥s</a></li>
+                        <li><a href="#">Infraestrutura</a></li>
+                        <li><a href="#">Localiza√ß√£o</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Acesso Restrito</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    
+    <nav id="menu">
+        <ul>
+            <li><a href="">Quartos</a></li>
+            <li><a href="">Servi√ßos</a></li>
+            <li><a href="">Reservas</a></li>
+            <div class="current">
+                <div class="ctoparr"></div>
+                <div class="cback"></div>
+                <div class="cbotarr"></div>
             </div>
-            <!-- Collection of nav links and other content for toggling -->
-            <div id="navbarCollapse" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Sobre NÛs</a></li>
-                    <li><a href="#">Infraestrutura</a></li>
-                    <li><a href="#">LocalizaÁ„o</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Login</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+        </ul>
+    </nav>
+</div>
 </body>
 </html>      

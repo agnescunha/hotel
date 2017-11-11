@@ -64,7 +64,7 @@
         }
 
         public function setTelefone1($_telefone){
-            $this->telefone1 = $_telefone
+            $this->telefone1 = $_telefone;
         }
 
         public function getTelefone2(){

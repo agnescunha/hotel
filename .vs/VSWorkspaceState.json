@@ -5,9 +5,9 @@
     "\\model",
     "\\model\\Banco.php",
     "\\view",
-    "\\view\\estilo",
-    "\\view\\script"
+    "\\view\\style",
+    "\\view\\telas"
   ],
-  "SelectedNode": "\\index.php",
+  "SelectedNode": "\\view\\telas\\home.php",
   "PreviewInSolutionExplorer": false
 }
