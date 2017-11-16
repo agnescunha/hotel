@@ -9,5 +9,6 @@
         echo 'NOME: '.$a['nome'].'<br>';
         echo 'RG:'.$a['rg'].'<br>';
     }*/
-    header('location:view\telas\home.php');
+
+    header('location:view\index.html');
 ?>
