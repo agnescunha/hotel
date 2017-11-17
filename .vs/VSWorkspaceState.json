@@ -2,12 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\controller",
-    "\\model",
     "\\model\\Banco.php",
-    "\\view",
-    "\\view\\style",
-    "\\view\\telas"
+    "\\view"
   ],
-  "SelectedNode": "\\model\\Cliente.php",
+  "SelectedNode": "\\view\\index.html",
   "PreviewInSolutionExplorer": false
 }
