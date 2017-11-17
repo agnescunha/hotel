@@ -137,7 +137,11 @@
  }
 
  @media (min-width:992px){
- 	#mainNav{
+ 	#login{
+         position
+ 	}
+
+     #mainNav{
  		padding-top:20px;
  		padding-bottom:20px;
  		-webkit-transition:padding-top .3s,padding-bottom .3s;
