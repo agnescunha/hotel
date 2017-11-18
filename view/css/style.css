@@ -150,8 +150,8 @@
     }
 
      #mainNav{
- 		padding-top:20px;
- 		padding-bottom:20px;
+ 		padding-top:12px;
+ 		padding-bottom:12px;
  		-webkit-transition:padding-top .3s,padding-bottom .3s;
  		-moz-transition:padding-top .3s,padding-bottom .3s;
  		transition:padding-top .3s,padding-bottom .3s;border:none;
