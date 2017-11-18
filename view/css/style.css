@@ -138,8 +138,16 @@
 
  @media (min-width:992px){
  	#login{
-         position
+         margin-left: 35%;
  	}
+    #Button_login {
+        float:left;
+        margin-left:15%;
+    }
+    #esqueci_minha_senha {
+        margin-left: -8%;
+        margin-bottom: 10%;
+    }
 
      #mainNav{
  		padding-top:20px;

@@ -26,9 +26,9 @@
 
   </head>
 
-  <body id="login">
+  <body id="login_cliente">
               <!-- login -->
-    <section id="login">
+    <section>
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -36,21 +36,23 @@
             <h3 class="section-subheading text-muted">Se você já possui cadastro em nosso site entre com seus dados abaixo. Caso não possua cadastro ainda, realize seu cadastro para poder acessar todas as funcionalidades dos clientes cadastrados e realizar suas revervas.</h3>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-5">
+        <div id="login" class="row">
+          <div class="col-lg-8">
             <form id="loginForm" name="sentMessage" novalidate>
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input class="form-control" id="usuario_cliente" type="text" placeholder="Seu nome de usuário *" required data-validation-required-message="Por favor digite seu nome.">
+                      <input class="form-control" id="email_cliente" type="email" placeholder="Seu e-mail *" required data-validation-required-message="Por favor, digite seu e-mail.">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="senha" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha.">
+                    <input class="form-control" id="senha_cliente" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha.">
                   </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
-                  <div id="success"></div>
+                    <div id="esqueci_minha_senha"><a href="#">Esqueci minha senha</a></div>
+                    <div id="success"></div>
+
                   <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit">Entrar</button>
                 </div>
               </div>
