@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-br">
 
   <head>
@@ -28,7 +27,12 @@
   </head>
 
   <body id="login_cliente">
-              <!-- login -->
+    
+  <?php
+    include 'cabecalho.html';
+  ?>
+
+  <!-- login -->
     <section>
       <div class="container">
         <div class="row">
@@ -63,6 +67,9 @@
       </div>
     </section>
 
+  <?php
+    include 'rodape.html';
+  ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
