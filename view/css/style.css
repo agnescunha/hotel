@@ -146,17 +146,22 @@
     }
     #esqueci_minha_senha {
         margin-left: -8%;
-        margin-bottom: 10%;
     }
 
-     #mainNav{
- 		padding-top:12px;
- 		padding-bottom:12px;
- 		-webkit-transition:padding-top .3s,padding-bottom .3s;
- 		-moz-transition:padding-top .3s,padding-bottom .3s;
- 		transition:padding-top .3s,padding-bottom .3s;border:none;
- 		background-color:black
- 	}
+    #cadastrar_cliente {
+        margin-left: -8%;
+        margin-bottom: 10%;
+    }
+   
+    #mainNav {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        -webkit-transition: padding-top .3s,padding-bottom .3s;
+        -moz-transition: padding-top .3s,padding-bottom .3s;
+        transition: padding-top .3s,padding-bottom .3s;
+        border: none;
+        background-color: black
+    }
 
  	#mainNav .navbar-brand{
  		font-size:1.75em;

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
   <head>
@@ -37,34 +37,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Login</h2>
-            <h3 class="section-subheading text-muted">Se você já possui cadastro em nosso site entre com seus dados abaixo. Caso não possua cadastro ainda, realize seu cadastro para poder acessar todas as funcionalidades dos clientes cadastrados e realizar suas revervas.</h3>
+            <h2 class="section-heading text-uppercase">Área do cliente</h2>
+            <h3 class="section-subheading text-muted">Bem vindo.</h3>
           </div>
         </div>
-        <div id="login" class="row">
-          <div class="col-lg-8">
-            <form id="loginForm" name="sentMessage" novalidate>
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="form-group">
-                      <input class="form-control" id="email_cliente" type="email" placeholder="Seu e-mail *" required data-validation-required-message="Por favor, digite seu e-mail.">
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" id="senha_cliente" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha.">
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12 text-center">
-                    <div id="esqueci_minha_senha"><a href="#">Esqueci minha senha</a></div>
-                    <div id="cadastrar_cliente"><a href="cadastro_cliente.php">Não tenho cadastro!</a></div><br />
-                    <div id="success"></div>
-                  <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit">Entrar</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </section>
 
   <?php
