@@ -26,19 +26,19 @@
 
   </head>
 
-  <body id="login_cliente">
+  <body id="area_cliente">
     
   <?php
     include 'cabecalho.html';
   ?>
 
-  <!-- login -->
+  <!-- area do cliente -->
     <section>
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Área do cliente</h2>
-            <h3 class="section-subheading text-muted">Bem vindo.</h3>
+            <h2 class="section-heading text-uppercase" id="titulo">Área do cliente</h2>
+            <h3 class="section-subheading text-muted">Bem vindo!</h3>
           </div>
         </div>
     </section>
