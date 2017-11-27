@@ -23,6 +23,7 @@
 
     <!-- estilo-->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/agnes.css" rel="stylesheet">
 
   </head>
 
@@ -37,7 +38,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Login</h2>
+            <h2 class="section-heading text-uppercase" id="titulo">Login</h2>
             <h3 class="section-subheading text-muted">Se você já possui cadastro em nosso site entre com seus dados abaixo. Caso não possua cadastro ainda, realize seu cadastro para poder acessar todas as funcionalidades dos clientes cadastrados e realizar suas revervas.</h3>
           </div>
         </div>
