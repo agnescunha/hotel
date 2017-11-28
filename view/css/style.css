@@ -137,7 +137,7 @@
  }
 
  @media (min-width:992px){
- 	#login{
+ 	#login, #cadastro_cliente, #reserva_cliente{
          margin-left: 35%;
  	}
     #Button_login {

@@ -26,13 +26,11 @@
 
   </head>
 
-  <body id="login_cliente">
+  <body id="cadastro_cliente">
     
   <?php
     include 'cabecalho.html';
   ?>
-
-  <!-- login -->
     <section>
       <div class="container">
         <div class="row">
@@ -41,21 +39,21 @@
             <h3 class="section-subheading text-muted">Se você não possui cadastro, por favor preencha os campos abaixo para realizar seu cadastro para poder fazer suas reservas.</h3>
           </div>
         </div>
-        <div id="login" class="row">
+        <div id="cadastro_cliente" class="row">
           <div class="col-lg-8">
-            <form id="loginForm" name="sentMessage" novalidate>
+            <form id="cadastroForm" name="sentMessage" novalidate>
               <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
                         Nome Completo: <input class="form-control" id="nome_cliente" type="text" placeholder="Nome Completo" required data-validation-required-message="Por favor digite seu nome." />
                     </div>
                     <div>
-                        Sexo:
-                        <select name="sexo">
-                            <option value="feminino">Feminino</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="masculino">Outro</option>
-                          </select>
+                        Sexo:<br />
+                        <input id="sexof" type="radio" name="sexo" value="feminino" /> Feminino
+                            &nbsp;&nbsp;
+                        <input id="sexom" type="radio" name="sexo" value="masculino"/> Masculino   
+                        &nbsp;&nbsp;
+                        <input id="sexoo" type="radio" name="sexo" value="outros" /> Outro   
                         <br />
                         <br />
                     </div>
@@ -97,30 +95,9 @@
                   <br />
                   <br />
                 <div>
-                    <h2 class="section-heading text-uppercase">Reserva</h2>
-                Data da entrada:
-                <input class="form-control" id="entrada_cliente" type="date" required data-validation-required-message="Por favor insira uma data de entrada." />
-                Data da saída:                
-                <input class="form-control" id="saida_cliente" type="date" /><br />
-
-                Tipo de Quarto:
-                <select name="sexo">
-                    <option value="economico">Econômico</option>
-                    <option value="suite">Suíte</option>
-                    <option value="premium">Premium</option>
-                </select>
-                <br />
-                <br />
-                Diária: <input class="form-control" id="valor_diaria" type="text" /><br />
-
-                Total a Pagar: <input class="form-control" id="valor_total" type="text" /><br />
-                </div>
-                Ao confirmar sua solicitação de reserva ela será encaminhada para análise de disponibilidade de quarto, e poderá verificar seu status na área do cliente.
-                <br />
-                <br />
                  <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
-                <button id="Button_cadastrar" class="btn btn-primary btn-xl text-uppercase" type="submit">Cadastrar e Reservar</button>
+                <button id="Button_cadastrar" class="btn btn-primary btn-xl text-uppercase" type="submit">Cadastrar</button>
                 </div>
               </div>
             </form>
