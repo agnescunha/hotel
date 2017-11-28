@@ -28,7 +28,12 @@
   </head>
 
   <body id="login_cliente">
-    
+    <script>
+      function esqueci_a_senha() {
+         document.getElementById('EsqueciSenha').style.display = "block";
+      }
+    </script>
+
   <?php
     include 'cabecalho.html';
   ?>
@@ -56,13 +61,44 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
-                    <div id="esqueci_minha_senha"><a href="#">Esqueci minha senha</a></div>
+                    <div id="esqueci_minha_senha">
+                      <a href="#" onclick="esqueci_a_senha()">Esqueci minha senha</a>
+                    </div>
                     <div id="cadastrar_cliente"><a href="cadastro_cliente.php">Não tenho cadastro!</a></div><br />
-                    <div id="success"></div>
+
+<!-- *********************ESQUECI MINHA SENHA ***********************-->
+              <div id="EsqueciSenha">
+                <div id="texto"><h3 class="section-subheading text-muted">Informe o seu e-mail cadastrado para lhe enviarmos sua senha de acesso.</h3></div>
+                <tr>
+                  <td>
+                    <div>
+                      <table>
+                        <tr>
+                          <td>
+                            <form name="form_esqueci" id="form_esqueci">
+                              <label>
+                                <input type="email" name="email" id="campo_email_esqueci" maxlength="12" placeholder="Digite seu email" class="inpt"               onkeypress="if(hitEnter()) { ajaxM('process/actions.php?action=30','process','formLogin',2) }">
+                              </label>
+                            </form>
+                          </td>
+                          <td>
+                            <form>
+                              <input id="Button_login_esqueci" type="button" value="Enviar" onClick="ajaxM('process/actions.php?action=30','process','formLogin',2)" onkeypress="if(hitEnter()) { ajaxM('process/actions.php?action=30','process','formLogin',2)}">
+                            </form>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              </div>
+<!-- ***** termina aqui *** -->
+
                   <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit">Entrar</button>
                 </div>
               </div>
-            </form>
+            </form> <!-- TODO O FORMULÁRIO DE LOGIN-->
+
           </div>
         </div>
       </div>
@@ -85,6 +121,8 @@
 
     <!-- Custom scripts for this template -->
     <script src="../js/agency.min.js"></script>
+
+
 
   </body>
 
