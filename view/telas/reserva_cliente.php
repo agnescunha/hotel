@@ -43,18 +43,10 @@
                     <b>Data da entrada:</b><input class="form-control" id="entrada_cliente" type="date" required data-validation-required-message="Por favor insira uma data de entrada." />
                   </div>
                   <div class="col-md-6">
-                    <b>Hora da entrada:</b><input class="form-control" id="horaE_cliente" type="time" required data-validation-required-message="Por favor insira um horário válido." placeholder="hh:mm"/>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
                     <b>Data da saída:</b><input class="form-control" id="saida_cliente" type="date" required data-validation-required-message="Por favor insira uma data de saída."/>
                   </div>
-                  <div class="col-md-6">
-                    <b>Hora da saída:</b><input class="form-control" id="horaS_cliente" type="time" required data-validation-required-message="Por favor insira um horário válido." placeholder="hh:mm" />
-                  </div>
-                </div>
-                <span style="font-size: 12px;">Obs: Atente para o horário de fechamento de cada diária que é ás 10:00 horas da manhã. </span>
+               </div>
+                <span style="font-size: 12px;">Obs: Atente para o horário de fechamento de cada diária que é ás 10:00 horas da manhã e a entrada é as 12:00 horas da tarde. </span>
                 <br>
                 <br>
                 <div class="row">

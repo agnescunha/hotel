@@ -18,11 +18,11 @@
 		margin-right: -10%;
 		margin-left: 30%;
 	}
-
-	#Button_cadastrar, #Button_reserva {
-	    float:left;
-	    margin-left:50%;
-	}
+ 
+    #Button_cadastrar {
+        float: left;
+        margin-left: 50%;
+    }
 
 	#EsqueciSenha{
 		display: none;

@@ -82,3 +82,29 @@ CREATE TABLE reserva (
 
 CREATE INDEX idx_RESERVA_INICIO ON reserva(inicio);
 CREATE INDEX idx_RESERVA_SAIDA  ON reserva(saida);
+
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (101, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (102, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (103, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (104, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (105, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (106, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (107, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (108, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (109, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (110, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (111, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (112, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (113, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (114, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (115, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro completo, e mesa de apoio.', '115,00', 'c');
+
+INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (201, '', '170,00', 'c');
+
+CREATE TABLE quarto (
+     id         INTEGER PRIMARY KEY AUTO_INCREMENT
+    ,num_quarto INTEGER UNIQUE
+    ,descricao  VARCHAR(100)
+    ,valor      DECIMAL
+    ,classe     VARCHAR(1) /*A,B,C*/
+)ENGINE=InnoDB;
