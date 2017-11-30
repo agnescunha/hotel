@@ -24,6 +24,9 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/agnes.css" rel="stylesheet">
 
+    <!-- js -->
+    <script src="../js/validacoes_clientes.js"></script>
+
   </head>
 
   <body>
@@ -41,58 +44,58 @@
           </div>
           <div class="row" id="cadastro_cliente">
             <div class="col-lg-8">
-              <form id="cadastroForm" name="sentMessage" novalidate>
+              <form id="cadastroForm" name="cadastroForm" novalidate action= "form_cadastro_cliente.php" method="POST">
                 <div class="row">
                   <div class="col-md-9">
                     <div class="form-group">
                       Nome Completo: 
-                        <input class="form-control" id="nome_cliente" type="text" placeholder="Nome Completo" required data-validation-required-message="Por favor digite seu nome."/>
+                        <input class="form-control" id="nome_cliente" name="nome_cliente" type="text" placeholder="Nome Completo" pattern="[[a-z][A-Z]\s]+$" required data-validation-required-message="Por favor digite seu nome." onkeyup="mascaraNome();" onkeypress="mascaraNome();"/>
                     </div>
                     <div class="form-group">
                       Sexo:<br />
-                        <input id="sexof" type="radio" name="sexo" value="feminino" /> Feminino
+                        <input id="sexoF" type="radio" name="sexo" value="feminino" /> Feminino
                         &nbsp;&nbsp; <!-- espaço entre os radio-->
-                        <input id="sexom" type="radio" name="sexo" value="masculino"/> Masculino   
+                        <input id="sexoM" type="radio" name="sexo" value="masculino"  /> Masculino   
                         &nbsp;&nbsp;
-                        <input id="sexoo" type="radio" name="sexo" value="outros" /> Outro   
+                        <input id="sexoO" type="radio" name="sexo" value="outros" /> Outro   
                       <br />
                       <br />
                     </div>
                     <div class="form-group">
                       Endereço:
-                        <input class="form-control" id="endereco_cliente" type="text" placeholder="Seu endereço" required data-validation-required-message="Por favor digite seu endereço." />
+                        <input class="form-control" id="endereco_cliente" type="text" placeholder="Seu endereço" required data-validation-required-message="Por favor digite seu endereço." onblur="validaEndereco();"/>
                     </div>
                     <div class="form-group">
                       Telefone:
-                        <input class="form-control" id="telefone_cliente" type="text" placeholder="(XX)XXXXX-XXXX" required data-validation-required-message="Por favor digite seu telefone." />
+                        <input class="form-control" id="telefone_cliente" name="telefone_cliente" type="text" placeholder="(XX)XXXXX-XXXX" required data-validation-required-message="Por favor digite seu número de telefone." pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}$" onkeyup="mascaraFone();" onkeypress="mascaraFone();"/>
                     </div>
                     <div class="form-group">
                       Celular:
-                        <input class="form-control" id="celular_cliente" type="text" placeholder="(XX)XXXXX-XXXX" required data-validation-required-message="Por favor digite seu telefone." />
+                        <input class="form-control" id="celular_cliente" name="celular_cliente" type="text" placeholder="(XX)XXXXX-XXXX" required data-validation-required-message="Por favor digite seu número de celular." pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}$" onkeyup="mascaraCel();" onkeypress="mascaraCel();"/>
                     </div>
                     <div class="form-group">
                       CPF:
-                        <input class="form-control" id="cpf_cliente" type="text" placeholder="XXX.XXX.XX-XX" required data-validation-required-message="Por favor digite seu CPF." />
+                        <input class="form-control" id="cpf_cliente" name="cpf_cliente" type="text" placeholder="XXX.XXX.XX-XX" required data-validation-required-message="Por favor digite seu CPF." onkeyup="validaCPF();" onblur="validaCPF();"/>
                     </div>
                     <div class="form-group">
                       RG:
-                        <input class="form-control" id="rg_cliente" type="text" placeholder="XXXXXXXX-XX" required data-validation-required-message="Por favor digite seu RG." />
+                        <input class="form-control" id="rg_cliente" name="rg_cliente" type="text" placeholder="XXXXXXXX-XX" required data-validation-required-message="Por favor digite seu RG." onkeyup="validaRG();" onblur="validaRG();"/>
                     </div>
                     <div class="form-group">
                       Data de Nascimento:
-                        <input class="form-control" id="nascimento_cliente" type="date" placeholder="dd/mm/aaaa" required data-validation-required-message="Por favor digite sua data de nascimento." />
+                        <input class="form-control" id="nascimento_cliente" name="nascimento_cliente" type="date" placeholder="dd/mm/aaaa" required data-validation-required-message="Por favor digite sua data de nascimento." onkeydown="mascaraDataNascimento();" onblur ="validaDataNascimento();" maxlength="10"/>
                     </div>
                     <div class="form-group">
                       E-mail: 
-                        <input class="form-control" id="email_cliente" type="email" placeholder="E-mail" required data-validation-required-message="Por favor digite seu E-mail.">
+                        <input class="form-control" id="email_cliente" name="email_cliente" type="email" placeholder="E-mail" required data-validation-required-message="Por favor digite seu E-mail." onblur="validaEmail();">
                     </div>
                     <div class="form-group">
                       Cadastrar Senha: 
-                        <input class="form-control" id="senha_cliente" type="password" placeholder="Senha" required data-validation-required-message="Por favor digite uma Senha.">
+                        <input class="form-control" id="senha_cliente" name="senha_cliente" type="password" placeholder="Senha" required data-validation-required-message="Por favor digite uma Senha." onkeyup="validaSenha();" onblur="validaSenha();" text="Mínimo 6 e no máximo 8 dígitos">
                     </div>
                     <div class="form-group">
                       Confirmar Senha:
-                        <input class="form-control" id="Csenha_cliente" type="password" placeholder="Senha" required data-validation-required-message="Por favor confirme sua Senha." />
+                        <input class="form-control" id="Csenha_cliente" name="Csenha_cliente" type="password" placeholder="Confirme a senha" required data-validation-required-message="Por favor confirme sua Senha." onblur="confirmaSenha();"/>
                     </div>
                   </div>
                   <br />
@@ -100,7 +103,7 @@
                   <div>
                     <div class="clearfix"></div>
                     <div class="col-lg-12 text-center">
-                      <button id="Button_cadastrar" class="btn btn-primary btn-xl text-uppercase" type="submit">Cadastrar</button>
+                      <button id="Button_cadastrar" class="btn btn-primary btn-xl text-uppercase" type="submit" onclick="Enviar()";>Cadastrar</button>
                     </div>
                   </div>
                 </div>
