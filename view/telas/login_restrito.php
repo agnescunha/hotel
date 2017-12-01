@@ -41,14 +41,14 @@ include_once 'cabecalho.html';
         </div>
         <div id="restrito" class="row">
           <div class="col-lg-8">
-            <form id="loginForm" name="sentMessage" novalidate>
+            <form id="loginForm" name="sentMessage" novalidate action="../../controller/login_restritoControle.php" method="post">
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
-                    <input class="form-control" id="usuario_cliente" type="text" placeholder="Seu nome de usuário *" required data-validation-required-message="Por favor digite seu nome.">
+                    <input class="form-control" id="usuario_cliente" type="text" placeholder="Seu nome de usuário *" required data-validation-required-message="Por favor digite seu nome." name="usuario">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="senha" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha.">
+                    <input class="form-control" id="senha" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha." name="senha">
                   </div>
                 </div>
                 <div class="clearfix"></div>
