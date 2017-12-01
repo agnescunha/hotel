@@ -1,4 +1,5 @@
 var VAL_NOME = false, VAL_TELEFONE = false, VAL_CELULAR = false, VAL_EMAIL = false, VAL_ENDERECO = false, VAL_CPF = false, VAL_RG = false, VAL_NASC_CLIENTE = false, VAL_CONF_SENHA = false, VAL_SENHA = false
+
 function mascaraNome(){ //Não deixa o usuário digitar números, nem segurando a mesma tecla//
 	var nome = document.getElementById("nome_cliente").value;
 	var posicao = nome.length - 1;
@@ -84,7 +85,40 @@ function mascaraCel(){ //aplica os caracteres e subdivide os números no formato
 	else VAL_CELULAR = false;
 }
 
-function validaDataNascimento(){
+function mascaraCPF(){// não tá funcionado ainda
+	var cpf = document.getElementById("cpf_cliente").value;
+	var posicao = cpf.length - 1;
+	var aux;
+	if(isNaN(cpf[posicao])){
+		aux = cpf.replace(cpf[posicao],"");
+		document.getElementById("cpf_cliente").value = aux;
+	}
+	}else if(posicao == 2){
+		aux = cpf.substring(0,2);
+		aux = aux + "." + cpf[posicao];
+		document.getElementById("cpf_cliente").value = aux;
+	}else if(posicao == 6){
+		aux = cpf.substring(0,6);
+		aux = aux + "." + cpf[posicao];
+		document.getElementById("cpf_cliente").value = aux;
+	}else if(posicao == 10){
+		aux = cpf.substring(0,10);
+		aux = aux + "." + cpf[posicao];
+		document.getElementById("cpf_cliente").value = aux;
+	}else if(cpf.length>13){
+		aux = cpf.substring(0,13);
+		document.getElementById("cpf_cliente").value = aux;
+	}	
+	if(cpf.length == 13) VAL_CPF = true;
+	else VAL_CPF = false;
+}
+
+/*
+function validaRG(){//não está funcionando ainda
+	return true;
+}
+
+function validaDataNascimento(){ //NÃO ESTÁ FUNCIONANDO AINDA
 	var data_atual = new Date();
 	var dia_atual= data_atual.getDate(); // 1-31
 	var mes_atual= data_atual.getMonth(); // 0-11 (zero=janeiro)
@@ -124,11 +158,14 @@ function validaDataNascimento(){
 	if (idade <= 17) alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe.");
 	else if (idade == 18){
 		if (ano_atual == ano && mes_atual + 1 == mes && dia >= dia_atual) return true;
-		else alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe."); 
+		else{
+			alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe não podemos proceguir com seu cadastro."); 
+			return false;
+		}
 	}
 	else return true;
 }
-
+*/
 function mascaraDataNascimento(){
 	var data = document.getElementById("nascimento_cliente").value;
 	var posicao = data.length -1;
@@ -149,3 +186,77 @@ function mascaraDataNascimento(){
 	else VAL_NASC_CLIENTE = false;
 }
 
+function validaEmail(){//verifica se o e-mail digitado segue o padrão de e-mail, se não apaga para digitar novamente//
+	var email = document.getElementById("email_cliente").value;
+	var arroba = email.indexOf('@');
+	var ponto= email.indexOf(".",arroba);
+	var i=0;
+	var nome = email.slice(0,arroba);
+	var provedor = email.slice(arroba+1,ponto);
+	var cont_ponto=0;
+	var cont_arroba=0;
+	var extprovedor = email.slice(ponto+1); 
+	while ( arroba != -1 ) {
+	   cont_arroba++;
+	   arroba = email.indexOf( "@",arroba + 1 );
+	}
+	arroba = email.indexOf('@');
+	while ( ponto != -1 ) {
+	   cont_ponto++;
+	   ponto = email.indexOf( ".",ponto + 1 );
+	}
+	ponto=email.indexOf(".",arroba);
+	if(nome.length<1||provedor.length<2||ponto<arroba||cont_arroba>1||cont_arroba<1||extprovedor.length<=2){
+		document.getElementById("email_cliente").value = "";
+		VAL_TELEFONE = false;
+	}else{
+		document.getElementById("email_cliente").value = email;
+		VAL_EMAIL = true;
+	}
+}
+
+/*function validaSenha(){
+	var senha = document.getElementById("senha_cliente").value;
+}
+
+function confirmaSenha(){
+	return 0;
+}
+
+function Enviar(){//verifica se todos os campos do formulário foi preenchido corretamente antes de enviar//
+	var nome = document.getElementById("nome_cliente").value;
+	if(VAL_NOME && VAL_ENDERECO && VAL_TELEFONE && VAL_CELULAR && VAL_CPF &&  VAL_RG && VAL_NASC_CLIENTE && VAL_EMAIL && VAL_SENHA && VAL_CONF_SENHA){
+		alert("Sr.(a) " + nome + "\nSeu cadastro foi efetivado com sucesso. Obrigada! Para acessar sua área de reserva faça login.");
+	}
+	else if(!VAL_NOME){
+		document.getElementById("nome_cliente").focus();
+	}
+	else if(!VAL_TELEFONE){
+		document.getElementById("telefone_cliente").focus();	
+	}
+	else if(!VAL_CELULAR){
+		document.getElementById("celular_cliente").focus();	
+	}
+	else if(!VAL_CPF){
+		document.getElementById("cpf_cliente").focus();
+	}
+	else if(!VAL_RG){
+		document.getElementById("rg_cliente").focus();
+	}
+	else if(!VAL_NASC_CLIENTE){
+		document.getElementById("nascimento_cliente").focus();
+	}
+	else if(!VAL_EMAIL){
+		document.getElementById("email_cliente").focus();
+	}
+	else if(!VAL_SENHA){
+		document.getElementById("senha_cliente").focus();
+	}
+	else if(!VAL_CONF_SENHA){
+		document.getElementById("Csenha_cliente").focus();
+	}
+	else{
+		document.getElementById("endereco_cliente").focus();
+	}
+}
+*/
