@@ -8,12 +8,12 @@
 
         public function abrirConexao(){
             $this->conexao = mysqli_connect($this->endereco, $this->username, $this->senha, $this->database);
-            //echo 'abriu conex„o.<br>';
+            //echo 'abriu conex√£o.<br>';
         }
 
         public function fecharConexao(){
             $this->conexao->close();
-            //echo 'fechou conex„o.<br>';
+            //echo 'fechou conex√£o.<br>';
         }
 
         public function pesquisarCliente($chave, $valor){
@@ -25,4 +25,8 @@
             return $retorno;
         }
     }
+
+     public function getConexao(){
+            return $this->conexao;
+        }
 ?>
