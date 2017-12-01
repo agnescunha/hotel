@@ -13,6 +13,21 @@
         private $login;
         private $senha;
         private $eh_admin;
+        
+        public function Funcionario($nome,$funcao,$cpf,$rg,$celular,$salario,$admissao,$demissao,$endereco,$login,$senha,$eh_admin){
+            $this->setNome($nome);
+            $this->setFuncao($funcao);
+            $this->setCpf($cpf);
+            $this->setRg($rg);
+            $this->setCelular($celular);
+            $this->setSalario($salario);
+            $this->setAdmissao($admissao);
+            $this->setDemissao($demissao);
+            $this->setEndereco($endereco);
+            $this->setLogin($login);
+            $this->setSenha($senha);
+            $this->setEhAdmin($eh_admin);
+        }
 
         public function getId(){
             return $this->id;
