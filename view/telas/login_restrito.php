@@ -1,6 +1,3 @@
-﻿<?php
-include_once 'cabecalho.html';
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -29,8 +26,10 @@ include_once 'cabecalho.html';
 
   </head>
 
-
   <body id="Lrestrito">
+      <?php
+      include 'cabecalho.html';
+      ?>
       <section id="Vrestrito">
       <div class="container">
         <div  class="row">
@@ -62,6 +61,9 @@ include_once 'cabecalho.html';
         </div>
       </div>
     </section>
+      <?php
+      include 'rodape.html';
+      ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -80,7 +82,3 @@ include_once 'cabecalho.html';
   </body>
 
 </html>
-
-<?php
-include_once 'rodape.html';
-?>
