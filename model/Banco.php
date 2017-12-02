@@ -24,9 +24,8 @@
             $this->fecharConexao();
             return $retorno;
         }
-    }
-
-     public function getConexao(){
+          public function getConexao(){
             return $this->conexao;
         }
+    }
 ?>
