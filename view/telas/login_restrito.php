@@ -54,7 +54,7 @@ include_once 'cabecalho.html';
                 <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
                   <div id="success"></div>
-                  <button id="Button_registro" class="btn btn-primary btn-xl text-uppercase" type="submit">Entrar</button>
+                  <button id="Button_registro" class="btn btn-primary btn-xl text-uppercase" type="submit" name="entrar">Entrar</button>
                 </div>
               </div>
             </form>
