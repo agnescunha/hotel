@@ -92,7 +92,6 @@ function mascaraCPF(){// não tá funcionado ainda
 	if(isNaN(cpf[posicao])){
 		aux = cpf.replace(cpf[posicao],"");
 		document.getElementById("cpf_cliente").value = aux;
-	}
 	}else if(posicao == 2){
 		aux = cpf.substring(0,2);
 		aux = aux + "." + cpf[posicao];
@@ -113,59 +112,6 @@ function mascaraCPF(){// não tá funcionado ainda
 	else VAL_CPF = false;
 }
 
-/*
-function validaRG(){//não está funcionando ainda
-	return true;
-}
-
-function validaDataNascimento(){ //NÃO ESTÁ FUNCIONANDO AINDA
-	var data_atual = new Date();
-	var dia_atual= data_atual.getDate(); // 1-31
-	var mes_atual= data_atual.getMonth(); // 0-11 (zero=janeiro)
-	var ano_atual = data_atual.getFullYear(); // com 4 dígitos
-	var data = document.getElementById("nascimento_cliente").value;
-	var dia = data.substr(0,2);
-	var mes = data.substr(3,2);
-	var ano = data.substr(6,4);
-	var idade = ano_atual-ano;
-
-	switch (mes) {
-		case '01': if (dia <= 31) return true;
-		break;
-		case '02': if (dia <= 29) return true;
-		break;
-		case '03': if (dia <= 31) return true;
-		break;
-		case '04': if (dia <= 30) return true;
-		break;
-		case '05': if (dia <= 31) return true;
-		break;
-		case '06': if (dia <= 30) return true;
-		break;
-		case '07': if (dia <= 31) return true;
-		break;
-		case '08': if (dia <= 31) return true;
-		break;
-		case '09': if (dia <= 30) return true;
-		break;
-		case '10': if (dia <= 31) return true;
-		break;
-		case '11': if (dia <= 30) return true;
-		break;
-		case '12': if (dia <= 31) return true;
-		break;
-	}
-	if (idade <= 17) alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe.");
-	else if (idade == 18){
-		if (ano_atual == ano && mes_atual + 1 == mes && dia >= dia_atual) return true;
-		else{
-			alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe não podemos proceguir com seu cadastro."); 
-			return false;
-		}
-	}
-	else return true;
-}
-*/
 function mascaraDataNascimento(){
 	var data = document.getElementById("nascimento_cliente").value;
 	var posicao = data.length -1;
