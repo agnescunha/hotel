@@ -2,15 +2,15 @@ USE hotel;
 
 CREATE TABLE cliente (
      id                 INTEGER PRIMARY KEY AUTO_INCREMENT
-    ,nome               VARCHAR(50)
-    ,rg                 VARCHAR(12) UNIQUE
-    ,cpf                VARCHAR(12) UNIQUE
-    ,endereco           VARCHAR(50)
-    ,data_nascimento    DATE
-    ,telefone1          VARCHAR(12)
-    ,telefone2          VARCHAR(12)
-    ,email              VARCHAR(100) UNIQUE
-    ,senha              VARCHAR(100)
+    ,nome               VARCHAR(50) NOT NULL
+    ,rg                 VARCHAR(13) UNIQUE NOT NULL
+    ,cpf                VARCHAR(15) UNIQUE NOT NULL
+    ,endereco           VARCHAR(50) NOT NULL
+    ,data_nascimento    DATE NOT NULL
+    ,telefone1          VARCHAR(15) NOT NULL
+    ,telefone2          VARCHAR(15)
+    ,email              VARCHAR(100) UNIQUE NOT NULL
+    ,senha              VARCHAR(100) NOT NULL
 )ENGINE=InnoDB;
 
 CREATE INDEX idx_CLIENTES_NOME  ON cliente(nome);
@@ -19,18 +19,18 @@ CREATE INDEX idx_CLIENTES_SENHA ON cliente(senha);
 
 CREATE TABLE funcionario (
      id         INTEGER PRIMARY KEY AUTO_INCREMENT
-    ,nome       VARCHAR(50)
-    ,funcao     VARCHAR(10)
-    ,cpf        VARCHAR(12) UNIQUE
-    ,rg         VARCHAR(12) UNIQUE
-    ,celular    VARCHAR(12)
-    ,salario    DECIMAL
-    ,admissao   DATE
+    ,nome       VARCHAR(50) NOT NULL
+    ,funcao     VARCHAR(50) NOT NULL
+    ,cpf        VARCHAR(15) UNIQUE NOT NULL
+    ,rg         VARCHAR(13) UNIQUE NOT NULL
+    ,celular    VARCHAR(15) NOT NULL
+    ,salario    DECIMAL NOT NULL
+    ,admissao   DATE NOT NULL
     ,demissao   DATE
-    ,endereco   VARCHAR(100)
-    ,login      VARCHAR(100) UNIQUE
-    ,senha      VARCHAR(100) 
-    ,eh_admin   BOOLEAN /*1 PARA ADMIN E 0 PARA FUNCIONARIO COMUM*/
+    ,endereco   VARCHAR(100) NOT NULL
+    ,login      VARCHAR(100) UNIQUE NOT NULL
+    ,senha      VARCHAR(100) NOT NULL
+    ,eh_admin   BOOLEAN NOT NULL/*1 PARA ADMIN E 0 PARA FUNCIONARIO COMUM*/
 )ENGINE=InnoDB;
 
 CREATE INDEX idx_FUNCIONARIO_NOME   ON funcionario(nome);
@@ -38,44 +38,43 @@ CREATE INDEX idx_FUNCIONARIO_LOGIN  ON funcionario(login);
 CREATE INDEX idx_FUNCIONARIO_SENHA  ON funcionario(senha);
 
 CREATE TABLE quarto (
-     id         INTEGER PRIMARY KEY AUTO_INCREMENT
-    ,num_quarto INTEGER UNIQUE
+     id         INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL
+    ,num_quarto INTEGER UNIQUE NOT NULL
     ,descricao  VARCHAR(100)
-    ,valor      DECIMAL
-    ,classe     VARCHAR(1) /*A,B,C,D...*/
+    ,valor      DECIMAL NOT NULL
+    ,classe     VARCHAR(1) NOT NULL/*A,B,C,D...*/
 )ENGINE=InnoDB;
 
 CREATE TABLE servico (
-     id         INTEGER PRIMARY KEY AUTO_INCREMENT
+     id         INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL
     ,descricao  VARCHAR(100)
-    ,valor      DECIMAL
+    ,valor      DECIMAL NOT NULL
 )ENGINE=InnoDB;
 
 CREATE TABLE comanda (
-     id             INTEGER PRIMARY KEY AUTO_INCREMENT
-    ,id_cliente     INTEGER
-    ,id_funcionario INTEGER
-    ,id_servico     INTEGER
-    ,id_quarto      INTEGER
-    ,quantidade     INTEGER
-    ,total          DECIMAL
-    ,status         VARCHAR(20)
+     id             INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL
+    ,id_cliente     INTEGER NOT NULL
+    ,id_funcionario INTEGER NOT NULL
+    ,id_servico     INTEGER NOT NULL
+    ,id_quarto      INTEGER NOT NULL
+    ,quantidade     INTEGER NOT NULL
+    ,total          DECIMAL NOT NULL
+    ,status_         VARCHAR(20) NOT NULL
     ,FOREIGN KEY (id_cliente)       REFERENCES cliente(id)
     ,FOREIGN KEY (id_funcionario)   REFERENCES funcionario(id)
     ,FOREIGN KEY (id_servico)       REFERENCES servico(id)
     ,FOREIGN KEY (id_quarto)        REFERENCES quarto(id)
 )ENGINE=InnoDB;
-
-CREATE INDEX idx_COMANDA_STATUS ON comanda(status);
+CREATE INDEX idx_COMANDA_STATUS ON comanda(status_);
 
 CREATE TABLE reserva (
-     id         INTEGER PRIMARY KEY AUTO_INCREMENT
-    ,id_cliente INTEGER
-    ,id_comanda INTEGER UNIQUE
-    ,inicio     DATE
+     id         INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL
+    ,id_cliente INTEGER NOT NULL
+    ,id_comanda INTEGER UNIQUE NOT NULL
+    ,inicio     DATE NOT NULL
     ,saida      DATE
     ,motivo     VARCHAR(100)
-    ,status     VARCHAR(15)
+    ,status_reserva     VARCHAR(15) NOT NULL
     ,FOREIGN KEY (id_cliente) REFERENCES cliente(id)
     ,FOREIGN KEY (id_comanda) REFERENCES comanda(id)
 )ENGINE=InnoDB;
@@ -144,3 +143,4 @@ INSERT INTO servico (descricao, valor) VALUES ('Sala de Jogos', '10.00');
 INSERT INTO servico (descricao, valor) VALUES ('refeições (cada) - diária', '30.00');
 INSERT INTO servico (descricao, valor) VALUES ('Estacionamento - diária', '10.00');
 INSERT INTO servico (descricao, valor) VALUES ('Estacionamento - mensal', '100.00');
+INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('Agnes Cunha Marques', 'admin', '021.251.200-54', '81086119-74', '(51)99726-4363', '3000.00', '2016/12/21', '16 de dezembro, 1257, Glória - Osório/RS', 'agnescunha', 'duda1011', 1);

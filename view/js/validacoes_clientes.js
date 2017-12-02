@@ -85,24 +85,24 @@ function mascaraCel(){ //aplica os caracteres e subdivide os números no formato
 	else VAL_CELULAR = false;
 }
 
-function mascaraCPF(){// não tá funcionado ainda
+function mascaraCPF(){
 	var cpf = document.getElementById("cpf_cliente").value;
 	var posicao = cpf.length - 1;
 	var aux;
 	if(isNaN(cpf[posicao])){
 		aux = cpf.replace(cpf[posicao],"");
 		document.getElementById("cpf_cliente").value = aux;
-	}else if(posicao == 2){
-		aux = cpf.substring(0,2);
+	}else if(posicao == 3){
+		aux = cpf.substring(0,3);
 		aux = aux + "." + cpf[posicao];
 		document.getElementById("cpf_cliente").value = aux;
-	}else if(posicao == 6){
-		aux = cpf.substring(0,6);
+	}else if(posicao == 7){
+		aux = cpf.substring(0,7);
 		aux = aux + "." + cpf[posicao];
 		document.getElementById("cpf_cliente").value = aux;
-	}else if(posicao == 10){
-		aux = cpf.substring(0,10);
-		aux = aux + "." + cpf[posicao];
+	}else if(posicao == 11){
+		aux = cpf.substring(0,11);
+		aux = aux + "-" + cpf[posicao];
 		document.getElementById("cpf_cliente").value = aux;
 	}else if(cpf.length>13){
 		aux = cpf.substring(0,13);
