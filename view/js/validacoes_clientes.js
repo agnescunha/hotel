@@ -52,8 +52,8 @@ function mascaraFone(){ //aplica os caracteres e subdivide os números no format
 		document.getElementById("telefone_cliente").value = aux;
 	}else if(fone.length>14){
 		aux = fone.substring(0,14);
-		document.getElementById("telefone_cliente").value = aux;
-	}	
+        document.getElementById("telefone_cliente").value = aux;
+    } 
 	if(fone.length == 14) VAL_TELEFONE = true;
 	else VAL_TELEFONE = false;
 }
@@ -86,29 +86,29 @@ function mascaraCel(){ //aplica os caracteres e subdivide os números no formato
 }
 
 function mascaraCPF(){
-	var cpf = document.getElementById("cpf_cliente").value;
-	var posicao = cpf.length - 1;
+    var cpf = document.getElementById("cpf_cliente").value;
+    var posicao = cpf.length - 1;
 	var aux;
-	if(isNaN(cpf[posicao])){
-		aux = cpf.replace(cpf[posicao],"");
-		document.getElementById("cpf_cliente").value = aux;
+    if (isNaN(cpf[posicao])) {
+        aux = cpf.replace(cpf[posicao], "");
+        document.getElementById("cpf_cliente").value = aux;
 	}else if(posicao == 3){
 		aux = cpf.substring(0,3);
 		aux = aux + "." + cpf[posicao];
 		document.getElementById("cpf_cliente").value = aux;
 	}else if(posicao == 7){
 		aux = cpf.substring(0,7);
-		aux = aux + "." + cpf[posicao];
-		document.getElementById("cpf_cliente").value = aux;
+        aux = aux + "." + cpf[posicao];
+        document.getElementById("cpf_cliente").value = aux;
 	}else if(posicao == 11){
 		aux = cpf.substring(0,11);
 		aux = aux + "-" + cpf[posicao];
 		document.getElementById("cpf_cliente").value = aux;
-	}else if(cpf.length>13){
-		aux = cpf.substring(0,13);
+	}else if(cpf.length>14){
+		aux = cpf.substring(0,14);
 		document.getElementById("cpf_cliente").value = aux;
-	}	
-	if(cpf.length == 13) VAL_CPF = true;
+    }
+	if(cpf.length == 14) VAL_CPF = true;
 	else VAL_CPF = false;
 }
 
@@ -131,6 +131,61 @@ function mascaraDataNascimento(){
 	}if(data.length == 10) VAL_NASC_CLIENTE = true;
 	else VAL_NASC_CLIENTE = false;
 }
+
+function validaDataNascimento() {
+    var data_atual = new Date();
+    var dia_atual = data_atual.getDate(); // 1-31
+    var mes_atual = data_atual.getMonth() + 1; // 0-11 (zero=janeiro)
+    var ano_atual = data_atual.getFullYear(); // com 4 dígitos
+    var data = document.getElementById("nascimento_cliente").value;
+
+    var dia = data.substr(0, 2);
+    var mes = data.substr(3, 2);
+    var ano = data.substr(6, 4);
+
+    var idade;
+    //var idade = ano_atual - ano;
+    if (mes <= mes_atual) {
+        if (dia <= dia_atual) {
+            idade = (ano_atual - ano) + " anos e " + ((mes_atual - 1) - mes) + " mes(es) " + ((30 - dia) > 0 ? (30 - dia) : (dia - 30)) + " dia(s)";
+        }
+        alert(idade);
+    }
+
+    switch (mes) {
+        case '01': if (dia <= 31) return true;
+            break;
+        case '02': if (dia <= 29) return true;
+            break;
+        case '03': if (dia <= 31) return true;
+            break;
+        case '04': if (dia <= 30) return true;
+            break;
+        case '05': if (dia <= 31) return true;
+            break;
+        case '06': if (dia <= 30) return true;
+            break;
+        case '07': if (dia <= 31) return true;
+            break;
+        case '08': if (dia <= 31) return true;
+            break;
+        case '09': if (dia <= 30) return true;
+            break;
+        case '10': if (dia <= 31) return true;
+            break;
+        case '11': if (dia <= 30) return true;
+            break;
+        case '12': if (dia <= 31) return true;
+            break;
+    }
+    if (idade <= 17) alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe.");
+    else if (idade == 18) {
+        if (ano_atual == ano && mes_atual + 1 == mes && dia >= dia_atual) return true;
+        else alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe.");
+    }
+    else return true;
+}
+
 
 function validaEmail(){//verifica se o e-mail digitado segue o padrão de e-mail, se não apaga para digitar novamente//
 	var email = document.getElementById("email_cliente").value;
