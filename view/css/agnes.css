@@ -1,4 +1,4 @@
-#reservaForm{
+#reservaForm, #areaForm{
 	margin-left: 20%;
 	margin-right: 20%;
 }
@@ -21,17 +21,21 @@
 @media (min-width:992px){
 	#texto{
 		margin-right: 150px;
-
 	}
 
 	#cadastro_cliente{
 		margin-right: -10%;
 		margin-left: 30%;
 	}
-
-	#Button_cadastrar, #Button_reserva {
+	
+	#Button_cadastrar{
 	    float:left;
 	    margin-left:50%;
+	}
+
+	#Button_atualizar{
+	    float:left;
+	    margin-left:40%;
 	}
 
 	#EsqueciSenha{
