@@ -67,6 +67,7 @@
                   </div>
                   <div class="col-md-6">
                     <b>Total a Pagar:</b>  <input class="form-control" id="valor_total" type="text" readonly/><br />
+                    <!-- readonly: impede de editar o campo - fica somente para leitura-->
                   </div>
                 </div>
             </div>
@@ -76,7 +77,7 @@
               <div class="col-lg-12 text-center" style="margin-bottom: 5%; margin-right: 3%;">Ao confirmar sua solicitação de reserva ela será encaminhada para análise de disponibilidade de quarto, e poderá verificar seu status na área do cliente.</div>  
               <div class="clearfix"></div>
               <div class="col-lg-12 text-center">
-                <button id="Button_reserva" class="btn btn-primary btn-xl text-uppercase" type="submit">Reservar</button>
+                <button id="Button_Reserva" class="btn btn-primary btn-xl text-uppercase" type="submit">Reservar</button>
               </div>
           </div>
   </section>
