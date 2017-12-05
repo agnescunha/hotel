@@ -49,14 +49,14 @@
         </div>
         <div id="login" class="row">
           <div class="col-lg-8">
-            <form id="loginForm" name="sentMessage" novalidate>
+            <form id="loginForm" name="sentMessage" novalidate action="../../controller/login_clienteControle.php">
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
-                      <input class="form-control" id="email_cliente" type="email" placeholder="Seu e-mail *" required data-validation-required-message="Por favor, digite seu e-mail.">
+                      <input class="form-control" id="email_cliente" type="email" placeholder="Seu e-mail *" required data-validation-required-message="Por favor, digite seu e-mail." name="email">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="senha_cliente" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha.">
+                    <input class="form-control" id="senha_cliente" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha." name="senha">
                   </div>
                 </div>
                 <div class="clearfix"></div>
@@ -94,7 +94,7 @@
               </div>
 <!-- ***** termina aqui *** -->
 
-                  <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit">Entrar</button>
+                  <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit" name="entrar">Entrar</button>
                 </div>
               </div>
             </form> <!-- TODO O FORMULÁRIO DE LOGIN-->
