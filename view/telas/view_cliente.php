@@ -1,5 +1,7 @@
 ﻿<?php
   require_once '../../model/funcionario.php';
+  require_once '../../model/Cliente.php';
+  require_once '../../controller/ClienteControle.php';
   session_start();
   if($_SESSION['logado'] == TRUE){
     if ($_SESSION['funcionario']->getEhAdmin() == 1) {
@@ -8,6 +10,9 @@
       include 'menu_func.html';
     }
   }
+  $id = $_GET["id"];
+  $controle = new ClienteControle();
+  $cliente = $controle->selectFromId($id);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,62 +49,52 @@
 
  <div id="main" class="container-fluid" style="margin-top: 50px">
   <h3 class="page-header">Visualizar Cliente</h3>
-  
-  <div class="row">
-    <div class="col-md-4">
-      <p><strong>Campo Um</strong></p>
-  	  <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-    </div>
-	
-	<div class="col-md-4">
-      <p><strong>Campo Dois</strong></p>
-  	  <p>Lorem ipsum dolor</p>
-    </div>
-	
-	<div class="col-md-4">
-      <p><strong>Campo Três</strong></p>
-  	  <p>123.456.789-0</p>
-    </div>
 
-    <div class="col-md-4">
-      <p><strong>Campo Quatro</strong></p>
-  	  <p>In vel sollicitudin leo, id fermentum augue.</p>
+<?php
+ echo" <div class=\"row\">
+    <div class=\"col-md-4\">
+      <p><strong>Id</strong></p>
+  	  <p>". $cliente->getId() ."</p>
+    </div>".
+	"<div class=\"col-md-4\">
+      <p><strong>Nome</strong></p>
+  	  <p>". $cliente->getNome() ."</p>
+    </div>".
+	"<div class=\"col-md-4\">
+      <p><strong>CPF</strong></p>
+  	  <p>". $cliente->getCpf() ."</p>
+    </div>".
+  "<div class=\"col-md-4\">
+      <p><strong>RG</strong></p>
+  	  <p>". $cliente->getRg() ."</p>
+    </div>".
+	 "<div class=\"col-md-4\">
+      <p><strong>Celeular</strong></p>
+  	  <p>". $cliente->getTelefone1() ."</p>
+    </div>".
+	"<div class=\"col-md-4\">
+      <p><strong>Telefone</strong></p>
+  	  <p>". $cliente->getTelefone2() ."</p>
+  </div>".
+  "<div class=\"col-md-4\">
+      <p><strong>Data Nascimento</strong></p>
+      <p>". $cliente->getAniversario() ."</p>
+  </div>".
+	"<div class=\"col-md-4\">
+      <p><strong>Email</strong></p>
+  	  <p>". $cliente->getEmail() ."</p>
+    </div>".
+	"<div class=\"col-md-4\">
+      <p><strong>Senha</strong></p>
+  	  <p>". $cliente->getSenha() ."</p>
+    </div>".
+  "<div class=\"col-md-8\">
+      <p><strong>Endereço</strong></p>
+      <p>". $cliente->getEndereco() ."</p>
     </div>
-	
-	<div class="col-md-4">
-      <p><strong>Campo Cinco</strong></p>
-  	  <p>(00) 234-5678</p>
-    </div>
-	
-	<div class="col-md-4">
-      <p><strong>Campo Seis</strong></p>
-  	  <p>Nullam ultrices elit ante.</p>
-    </div>
-	
-    <div class="col-md-4">
-      <p><strong>Campo Sete</strong></p>
-  	  <p>Integer finibus in ligula vitae aliquet.</p>
-    </div>
-	
-	<div class="col-md-4">
-      <p><strong>Campo Oito</strong></p>
-  	  <p>Jes</p>
-    </div>
-	
-	<div class="col-md-4">
-      <p><strong>Campo Nove</strong></p>
-  	  <p>Lundo, Merkredo, Vendredo</p>
-    </div>
- 
-    <div class="col-md-8">
-      <p><strong>Campo Dez</strong></p>
-  	  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-	  In bibendum nunc urna, at vestibulum neque pellentesque eget. 
-	  Maecenas lacinia velit ante, vitae fermentum ex interdum et. 
-	  In vel sollicitudin leo, id fermentum augue. </p>
-    </div>
- </div>
- 
+  </div>";
+?>
+
  <hr />
  <div id="actions" class="row">
    <div class="col-md-12">
