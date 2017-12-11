@@ -1,5 +1,6 @@
 <?php
   require_once '../../model/funcionario.php';
+   require_once '../../controller/ClienteControle.php';
   session_start();
   if($_SESSION['logado'] == TRUE){
     if ($_SESSION['funcionario']->getEhAdmin() == 1) {
@@ -7,6 +8,13 @@
     }else{
       include 'menu_func.html';
     }
+  }
+  $controle = new ClienteControle();
+  if (isset($_POST['salvar'])) {
+    $cliente = new Cliente($_POST['nome'],$_POST['rg'],$_POST['cpf'],$_POST['endereco'],$_POST['aniversario'],$_POST['telefone1'],
+          $_POST['telefone2'],$_POST['email'],$_POST['senha']);
+    $controle->insert($cliente);
+     header("Location: index_restrito.php");
   }
 ?>
 <!DOCTYPE html>
@@ -26,59 +34,59 @@
   
   <h3 class="page-header">Cadastrar Cliente</h3>
   
-  <form action="index.html">
+  <form action="add_cliente.php" method="post">
   	<div class="row">
   	  <div class="form-group col-md-6">
   	  	<label for="exampleInputEmail1">Nome</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="text" class="form-control" name="nome" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-4">
   	  	<label for="exampleInputEmail1">RG</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="text" class="form-control" name="rg" placeholder="Digite o valor">
   	  </div>
 	</div>
 
     <div class="row">
       <div class="form-group col-md-6">
         <label for="exampleInputEmail1">Edereço</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+        <input type="text" class="form-control" name="endereco" placeholder="Digite o valor">
       </div>
         <div class="form-group col-md-4">
         <label for="exampleInputEmail1">CPF</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+        <input type="text" class="form-control" name="cpf" placeholder="Digite o valor">
       </div>
     </div>
 	
 	<div class="row">
 	  <div class="form-group col-md-3">
   	  	<label for="exampleInputEmail1">Data de Nascimento</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="date" class="form-control" name="aniversario" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
   	  	<label for="exampleInputEmail1">Celular</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="text" class="form-control" name="telefone1" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
   	  	<label for="exampleInputEmail1">Telefone</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="text" class="form-control" name="telefone2" placeholder="Digite o valor">
   	  </div>
 	</div>
 	
 	<div class="row">
   	  <div class="form-group col-md-6">
   	  	<label for="exampleInputEmail1">Email</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="email" class="form-control" name="email" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
   	  	<label for="exampleInputEmail1">Senha</label>
-  	  	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite o valor">
+  	  	<input type="password" class="form-control" name="senha" placeholder="Digite o valor">
   	  </div>
 	</div>
 	
 	
 	<div class="row">
 	  <div class="col-md-12">
-	  	<button type="submit" class="btn btn-primary">Salvar</button>
+	  	<button type="submit" class="btn btn-primary" name="salvar">Salvar</button>
 		<a href="index_restrito.php" class="btn btn-default">Cancelar</a>
 	  </div>
 	</div>
