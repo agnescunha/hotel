@@ -72,7 +72,7 @@
                     <div class='form-group'>
                       Celular:
                         <input class='form-control' id='celular_cliente' name='celular_cliente' type='text' placeholder='(XX)XXXXX-XXXX' required='required' data-validation-required-message='Por favor digite seu número de celular.' pattern='\([0-9]{2}\)[0-9]{5}-[0-9]{4}$' onkeyup='mascaraCel();' onkeypress='mascaraCel();'/>
-                    </div> 
+                    </div>
                     <div class='form-group'>
                       CPF:
                         <input class='form-control' id='cpf_cliente' name='cpf_cliente' type='text' placeholder='XXX.XXX.XX-XX' required='required' data-validation-required-message='Por favor digite seu CPF.' onkeyup='mascaraCPF();' onkeypress='mascaraCPF();' pattern='[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}'/>
@@ -101,9 +101,9 @@
                   <br />
                   <br />
                   <div>
-                    <div class='clearfix'></div>
+                    <!-- <div class='clearfix'></div> -->
                     <div class='col-lg-12 text-center'>
-                      <button id='Button_cadastrar' name = 'cadastrar' class='btn btn-primary btn-xl text-uppercase' type='submit' onclick='Enviar()';>Cadastrar</button>
+                      <button id='Button_cadastrar' name = 'cadastrar' type='submit' onclick='Enviar()';>Cadastrar</button>
                     </div>
                   </div>
                 </div>

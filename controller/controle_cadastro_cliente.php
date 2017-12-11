@@ -1,11 +1,11 @@
 <?php  
-    if(isset($_GET))   echo "existe algo<br>";
+    if(isset($_POST))   echo "existe algo<br>";
 
     echo "vou imprimir os POST<br>";
-    var_dump($_GET);
+    var_dump($_POST);
 
     echo "<br>";
-    echo $_GET["nome_cliente"]."<br>";
+    echo $_POST["nome_cliente"]."<br>";
 
     echo "Já imprimi os POST<br>";
 ?>
