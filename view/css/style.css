@@ -137,10 +137,10 @@
  }
 
  @media (min-width:992px){
- 	#login{
+ 	#login, #restrito{
          margin-left: 35%;
  	}
-    #Button_login {
+    #Button_login, #Button_registro{
         float:left;
         margin-left:15%;
     }

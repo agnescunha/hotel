@@ -27,7 +27,7 @@ function mascaraNome(){ //Não deixa o usuário digitar números, nem segurando 
 
 function validaEndereco(){ //limita o tamanho do endereço do cliente//
 	var endereco = document.getElementById("endereco_cliente").value;
-	if(endereco.length <= 100)	VAL_ENDERECO = true;
+	if(endereco.length >= 10 && endereco.length <= 100) VAL_ENDERECO = true;
 	else VAL_ENDERECO = false;
 }
 
@@ -143,49 +143,34 @@ function validaDataNascimento() {
     var mes = data.substr(3, 2);
     var ano = data.substr(6, 4);
 
+	if (dia > 31) document.getElementById("nascimento_cliente").value = "";
+	if (mes > 12) document.getElementById("nascimento_cliente").value = "";
+
     var idade;
-    //var idade = ano_atual - ano;
     if (mes <= mes_atual) {
         if (dia <= dia_atual) {
             idade = (ano_atual - ano) + " anos e " + ((mes_atual - 1) - mes) + " mes(es) " + ((30 - dia) > 0 ? (30 - dia) : (dia - 30)) + " dia(s)";
         }
-        alert(idade);
     }
 
-    switch (mes) {
-        case '01': if (dia <= 31) return true;
-            break;
-        case '02': if (dia <= 29) return true;
-            break;
-        case '03': if (dia <= 31) return true;
-            break;
-        case '04': if (dia <= 30) return true;
-            break;
-        case '05': if (dia <= 31) return true;
-            break;
-        case '06': if (dia <= 30) return true;
-            break;
-        case '07': if (dia <= 31) return true;
-            break;
-        case '08': if (dia <= 31) return true;
-            break;
-        case '09': if (dia <= 30) return true;
-            break;
-        case '10': if (dia <= 31) return true;
-            break;
-        case '11': if (dia <= 30) return true;
-            break;
-        case '12': if (dia <= 31) return true;
-            break;
-    }
-    if (idade <= 17) alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe.");
-    else if (idade == 18) {
-        if (ano_atual == ano && mes_atual + 1 == mes && dia >= dia_atual) return true;
-        else alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe.");
-    }
-    else return true;
+    if ((ano_atual - ano) <= 17){
+		document.getElementById("nascimento_cliente").value = "";
+		alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe não poderemos prosseguir com o cadastro.");
+	} 
+    else if ((ano_atual - ano) == 18) {
+        if (mes_atual == mes && dia >= dia_atual){
+			document.getElementById("nascimento_cliente").value = data;
+			return VAL_NASC_CLIENTE = true;
+		}else{
+			document.getElementById("nascimento_cliente").value = "";
+			alert("Para se cadastrar você deve ter mais de 18 anos. Desculpe não poderemos prosseguir com o cadastro.");
+		}
+	}
+	else{
+		document.getElementById("nascimento_cliente").value = data;
+		return VAL_NASC_CLIENTE = true;
+	}
 }
-
 
 function validaEmail(){//verifica se o e-mail digitado segue o padrão de e-mail, se não apaga para digitar novamente//
 	var email = document.getElementById("email_cliente").value;
@@ -209,25 +194,41 @@ function validaEmail(){//verifica se o e-mail digitado segue o padrão de e-mail
 	ponto=email.indexOf(".",arroba);
 	if(nome.length<1||provedor.length<2||ponto<arroba||cont_arroba>1||cont_arroba<1||extprovedor.length<=2){
 		document.getElementById("email_cliente").value = "";
-		VAL_TELEFONE = false;
+		VAL_EMAIL = false;
 	}else{
 		document.getElementById("email_cliente").value = email;
 		VAL_EMAIL = true;
 	}
 }
 
-/*function validaSenha(){
+function validaSenha(){
 	var senha = document.getElementById("senha_cliente").value;
+	if (senha.length >= 6 && senha.length <= 8){
+			document.getElementById("senha_cliente").value = senha;
+			return VAL_SENHA = true;
+	}else{
+		document.getElementById("senha_cliente").value = "";
+		return VAL_SENHA = false;
+		return alert ("Digite uma senha válida, com no mínimo 6 e no máximo 8 dígitos");
+	} 
 }
 
 function confirmaSenha(){
-	return 0;
+	var senha = document.getElementById("senha_cliente").value;
+	var Csenha = document.getElementById("Csenha_cliente").value;
+	if (senha != Csenha) {
+		document.getElementById("Csenha_cliente").value = "";
+		alert ("As senhas não são iguais, por favor confirmar as senhas iguais.");
+		return VAL_CONF_SENHA = false;
+	}else{
+		document.getElementById("senha_cliente").value = Csenha;
+		return VAL_CONF_SENHA = true;
+	}
 }
 
 function Enviar(){//verifica se todos os campos do formulário foi preenchido corretamente antes de enviar//
-	var nome = document.getElementById("nome_cliente").value;
-	if(VAL_NOME && VAL_ENDERECO && VAL_TELEFONE && VAL_CELULAR && VAL_CPF &&  VAL_RG && VAL_NASC_CLIENTE && VAL_EMAIL && VAL_SENHA && VAL_CONF_SENHA){
-		alert("Sr.(a) " + nome + "\nSeu cadastro foi efetivado com sucesso. Obrigada! Para acessar sua área de reserva faça login.");
+
+	if(VAL_NOME && VAL_ENDERECO && VAL_TELEFONE && VAL_CELULAR && VAL_CPF && VAL_NASC_CLIENTE && VAL_EMAIL && VAL_SENHA && VAL_CONF_SENHA){
 	}
 	else if(!VAL_NOME){
 		document.getElementById("nome_cliente").focus();
@@ -240,9 +241,6 @@ function Enviar(){//verifica se todos os campos do formulário foi preenchido co
 	}
 	else if(!VAL_CPF){
 		document.getElementById("cpf_cliente").focus();
-	}
-	else if(!VAL_RG){
-		document.getElementById("rg_cliente").focus();
 	}
 	else if(!VAL_NASC_CLIENTE){
 		document.getElementById("nascimento_cliente").focus();
@@ -260,4 +258,3 @@ function Enviar(){//verifica se todos os campos do formulário foi preenchido co
 		document.getElementById("endereco_cliente").focus();
 	}
 }
-*/

@@ -77,7 +77,7 @@
                           <td>
                             <form name="form_esqueci" id="form_esqueci">
                               <label>
-                                <input type="email" name="email" id="campo_email_esqueci" maxlength="12" placeholder="Digite seu email" class="inpt"               onkeypress="if(hitEnter()) { ajaxM('process/actions.php?action=30','process','formLogin',2) }">
+                                <input type="email" name="email" id="campo_email_esqueci" maxlength="100" placeholder="Digite seu email" class="inpt" onkeypress="if(hitEnter()) { ajaxM('process/actions.php?action=30','process','formLogin',2) }">
                               </label>
                             </form>
                           </td>

@@ -1,6 +1,3 @@
-<?php
-include_once 'cabecalho.html';
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -31,11 +28,16 @@ include_once 'cabecalho.html';
 
 
   <body id="Lrestrito">
+    <?php
+      include_once 'cabecalho.html';
+    ?>
       <section id="Vrestrito">
       <div class="container">
         <div  class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Login Restrito</h2>
+            <br>
+            <br>
+            <h2 class="section-heading text-uppercase" id = "titulo">Login Restrito</h2>
             <h3 class="section-subheading text-muted">Area exclusiva para funcionários.</h3>
           </div>
         </div>
@@ -78,9 +80,9 @@ include_once 'cabecalho.html';
     <script src="../js/agency.min.js"></script>
 
   </body>
-
+  <?php
+    include_once 'rodape.html';
+  ?>
 </html>
 
-<?php
-include_once 'rodape.html';
-?>
+
