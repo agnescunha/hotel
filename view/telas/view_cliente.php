@@ -10,17 +10,22 @@
       include 'menu_func.html';
     }
   }
-  $id = $_GET["id"];
-  $controle = new ClienteControle();
+    $controle = new ClienteControle();
+     $id = $_GET["id"];
+  if (isset($_POST['update'])) {
+       $cliente = new Cliente($_POST['nome'],$_POST['rg'],$_POST['cpf'],$_POST['endereco'],$_POST['aniversario'],$_POST['telefone1'],
+          $_POST['telefone2'],$_POST['email'],$_POST['senha']);
+       $cliente->setId($id);
+       $controle->update($cliente);
+  }
   $cliente = $controle->selectFromId($id);
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> 
 <head>
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>Administrador</title>
 
  <link href="../vendor/bootstrap/css2/bootstrap.min.css" rel="stylesheet">
  <link href="../vendor/bootstrap/css2/style.css" rel="stylesheet">
@@ -31,17 +36,6 @@
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalLabel">Excluir Cliente</h4>
-      </div>
-      <div class="modal-body">
-        Deseja realmente excluir este cliente?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Sim</button>
-	<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
-      </div>
     </div>
   </div>
 </div>
@@ -92,18 +86,17 @@
       <p><strong>Endereço</strong></p>
       <p>". $cliente->getEndereco() ."</p>
     </div>
-  </div>";
-?>
+  </div>
 
  <hr />
- <div id="actions" class="row">
-   <div class="col-md-12">
-     <a href="index_restrito.php" class="btn btn-primary">Fechar</a>
-	 <a href="edit_cliente.php" class="btn btn-default">Editar</a>
-	 <a href="#" class="btn btn-default" data-toggle="modal" data-target="#delete-modal">Excluir</a>
+ <div id=\"actions\" class=\"row\">
+   <div class=\"col-md-12\">
+     <a href=\"index_restrito.php\" class=\"btn btn-primary\">Fechar</a>
+	 <a href=\"edit_cliente.php?id=$id\" class=\"btn btn-default\">Editar</a>
+	 <a href=\"modal_cliente.php?id=$id\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#delete-modal\" name='excluir'>Excluir</a>
    </div>
- </div>
- 
+ </div>";
+ ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
