@@ -109,5 +109,32 @@
 			}
 			return $clientes;
 		}
+
+		public function verificarRG($rg){
+			$banco = new Banco();
+			$banco->abrirConexao();
+			$conn = $banco->getConexao();
+			$sql = "select*from cliente where rg = '$rg'";
+			$result = mysqli_query($conn,$sql);
+			return mysqli_num_rows($result);
+		}
+
+		public function verificarCPF($cpf){
+			$banco = new Banco();
+			$banco->abrirConexao();
+			$conn = $banco->getConexao();
+			$sql = "select*from cliente where cpf = '$cpf'";
+			$result = mysqli_query($conn,$sql);
+			return mysqli_num_rows($result);
+		}
+
+		public function verificarEmail($email){
+			$banco = new Banco();
+			$banco->abrirConexao();
+			$conn = $banco->getConexao();
+			$sql = "select*from cliente where email = '$email'";
+			$result = mysqli_query($conn,$sql);
+			return mysqli_num_rows($result);
+		}
 	}
 ?>

@@ -9,7 +9,7 @@
 		$senha = $_POST['senha'];
 		if(empty($usuario) || empty($senha)){
 			echo "<script type=\"text/javascript\">alert(\"ERRO: Campo em branco!\") </script>";
-			header("Location: ../view/telas/login_restrito.php");
+			header("refresh:0; url=../view/telas/login_restrito.php");
 		}else{
 			$sql = "select*from funcionario where login = '$usuario' && senha = '$senha'";
 			if ($exe = mysqli_query($conn,$sql)) {
@@ -23,7 +23,7 @@
 					header("Location: ../view/telas/index_restrito.php");
 				}else{
 				echo "<script type=\"text/javascript\">alert(\"ERRO: Nome de usuario ou senha incorreto!\") </script>";
-				header("Location: ../view/telas/login_restrito.php");
+				header("refresh:0; url=../view/telas/login_restrito.php");
 				}
 			}
 		}
