@@ -1,3 +1,5 @@
+create database hotel;
+
 USE hotel;
 
 CREATE TABLE cliente (
