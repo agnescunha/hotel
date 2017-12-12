@@ -8,6 +8,8 @@
     }else{
       include 'menu_func.html';
     }
+  }else{
+    header("Location: login_restrito.php");
   }
       $id = $_GET["id"];
       $controle = new ClienteControle();

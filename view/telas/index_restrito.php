@@ -9,6 +9,8 @@
 		}else{
 			include 'menu_func.html';
 		}
+	}else{
+		header("Location: login_restrito.php");
 	}
 	function listar($ini,$fim,$total){
  		for ($i=$ini ; $i<$fim;$i++) { 
@@ -27,23 +29,10 @@
 					</tr>";
     			}	
  	}
-
  	$controle = new ClienteControle();
-	if (isset($_POST['pesquisar'])) {
-    	$resul = $controle->selectFromName($_POST['nome_pesq']);
-    }else{
-    	$resul = $controle->selectAll();
-    }
-
-	$max = 10;
-    $total = sizeof($resul);
-    $pag = ceil($total/$max);
-   	$pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1; 
- 	$ini = ($max*$pagina)-$max;
-	$fim = $ini+$max;
-	if($fim > $total){
-		$fim = $total;
-	}
+ 	if(isset($_GET['clean'])){
+ 		header("Location: index_restrito.php");
+ 	}
 
 echo "<!DOCTYPE html>
 <html lang=\"pt-br\">
@@ -79,10 +68,37 @@ echo "<!DOCTYPE html>
 		<div class=\"col-sm-3\">
 			<a href=\"add_cliente.php\" class=\"btn btn-primary pull-right h2\">Cadastrar</a>
 		</div>
-	</div> <!-- /#top -->
+	</div> <!-- /#top -->";
 
+if (isset($_POST['pesquisar'])) {
+	$nome_pesq = $_POST['nome_pesq']; 
+		echo "<div class=\"row\">
+		<div class=\"col-sm-3\">
+			<p>Mostrando Resultados da pesquisa: $nome_pesq <p>
+		</div>
+		<div class=\"col-sm-3\">
+			<a href=\"index_restrito.php?clean\"><button type=\"button\" class=\"btn btn-danger btn-xs\" name=\"clean\">
+  				<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>
+			</button></a>
+			</div>
+		</div>
+			";
+    	$resul = $controle->selectFromName($nome_pesq);
+    }else{
+    	$resul = $controle->selectAll();
+    }
+
+	$max = 10;
+    $total = sizeof($resul);
+    $pag = ceil($total/$max);
+   	$pagina = (isset($_GET['pagina']))? $_GET['pagina'] : 1; 
+ 	$ini = ($max*$pagina)-$max;
+	$fim = $ini+$max;
+	if($fim > $total){
+		$fim = $total;
+	}
  
- 	<hr />
+ echo"	<hr />
  	<div id=\"list\" class=\"row\">
 	
 	<div class=\"table-responsive col-md-12\">
