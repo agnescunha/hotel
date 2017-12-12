@@ -8,6 +8,34 @@
 	margin-bottom: 3%;
 }
 
+#subtitulo{
+	margin-top: 0;
+	margin-bottom: 3%;
+	margin-left: 5%;
+}
+
+#button_cancelar{
+	width: 100%;
+	font-size: 85%;
+}
+
+#pendentes, #aprovadas{
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background-color: rgba(254,209,55,.2);
+	font-size: 100%;
+	text-align: center;
+	border-collapse: separate; 
+	width: 140%;
+}
+
+#campos{
+	width: 100%;	
+
+}	
+
 /* estilização formulário */
   #nome_cliente:valid, #email_cliente:valid, #telefone_cliente:valid, #celular_cliente:valid, #rg_cliente:valid, #cpf_cliente:valid, #endereco_cliente:valid, #senha_cliente:valid, #Csenha_cliente:valid, #nascimento_cliente:valid{
     background-color: #D0F5A9;
