@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <!-- <?php
-    /*require("../../model/Banco.php");
+    require("../../model/Banco.php");
     //iniciar a pesquisa no banco de Dados para povoar a tabela
     //criar a conexão com o banco de dados
-    $link = new mysqli('localhost', 'root', '', 'hotel');
-
-    if (!$link) {
-        die('Connect Error (' . mysqli_connect_errno() . ') '
-                . mysqli_connect_error());
-    }
-    //Selecionar todos os registros da tabela
-    $query = "SELECT * FROM reserva" or die("Error in the consult.." . mysqli_error($link));
-    $result = $link->query($query);
-    $cont=0;*/
+    $banco = new Banco();
+    $pendentes = $banco->pesquisaReserva(1, "pendente");
     ?> -->
 <html lang='pt-br'>
 

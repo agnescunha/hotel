@@ -52,5 +52,9 @@
             $this->fecharConexao();
             return $retorno;
         }
+
+        public function pesquisaReserva($idCliente, $status){
+
+        }
     }
 ?>

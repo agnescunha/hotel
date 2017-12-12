@@ -59,7 +59,7 @@ CREATE TABLE comanda (
     ,id_quarto      INTEGER NOT NULL
     ,quantidade     INTEGER NOT NULL
     ,total          DECIMAL NOT NULL
-    ,status_         VARCHAR(20) NOT NULL
+    ,status_        VARCHAR(20) NOT NULL
     ,FOREIGN KEY (id_cliente)       REFERENCES cliente(id)
     ,FOREIGN KEY (id_funcionario)   REFERENCES funcionario(id)
     ,FOREIGN KEY (id_servico)       REFERENCES servico(id)
