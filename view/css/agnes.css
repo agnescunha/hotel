@@ -8,6 +8,11 @@
 	margin-bottom: 3%;
 }
 
+#historico_reservas{
+	margin: 0 0 5% 30%;
+	height: 100%;
+}
+
 /* estilização formulário */
   #nome_cliente:valid, #email_cliente:valid, #telefone_cliente:valid, #celular_cliente:valid, #rg_cliente:valid, #cpf_cliente:valid, #endereco_cliente:valid, #senha_cliente:valid, #Csenha_cliente:valid, #nascimento_cliente:valid{
     background-color: #D0F5A9;
@@ -35,8 +40,13 @@
 
 	#Button_atualizar{
 	    float:left;
-	    margin-left:40%;
+	    margin-left:30%;
 	}
+
+#Button_fazer_reserva{
+	margin-left:-60%;
+	margin-top: 5%;
+}
 
 	#EsqueciSenha{
 		display: none;

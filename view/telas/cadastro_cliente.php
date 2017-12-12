@@ -30,11 +30,21 @@
 
   <body>
     
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' ></script>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' ></script>
+    
     <?php
       include 'cabecalho.html';
     ?>
-      <section>
+    
+    <section>
+
+    <?php
+      if(isset($_COOKIE['cadastroCliente'])){
+        echo "<script type=\"text/javascript\">alert(\"ERRO: Campo em branco!\") </script>";
+        //setcookie('cadastroCliente');
+        //header('location:../view/telas/login.php');
+      }
+    ?>
         <div class='container'>
           <div class='row'>
             <div class='col-lg-12 text-center'>
@@ -44,7 +54,7 @@
           </div>
           <div class='row' id='cadastro_cliente'>
             <div class='col-lg-8'>
-              <form id='cadastroForm' name='cadastroForm' action= '../../controller/controle_cadastro_cliente.php' method='get' enctype='text/plain'>
+              <form id='cadastroForm' name='cadastroForm' action= '../../controller/controle_cadastro_cliente.php' method='post'>
                 <div class='row'>
                   <div class='col-md-9'>
                     <div class='form-group'>
@@ -98,12 +108,12 @@
                         <input class='form-control' id='Csenha_cliente' name='Csenha_cliente' type='password' placeholder='Confirme a senha' required='required' data-validation-required-message='Por favor confirme sua Senha.' onblur='confirmaSenha();' minlength='6' maxlength='8'/>
                     </div>
                   </div>
-                  <br />
-                  <br />
+                  <br/>
+                  <br/>
                   <div>
                     <!-- <div class='clearfix'></div> -->
                     <div class='col-lg-12 text-center'>
-                      <button id='Button_cadastrar' name = 'cadastrar' type='submit' onclick='Enviar()';>Cadastrar</button>
+                      <button id='Button_cadastrar' class="btn btn-primary btn-xl text-uppercase" name = 'cadastrar' type='submit' onclick='Enviar()';>Cadastrar</button>
                     </div>
                   </div>
                 </div>

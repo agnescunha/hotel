@@ -10,18 +10,8 @@
         private $telefone2;
         private $email;
         private $senha;
-        
-        public function Cliente($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha){
-            $this->setNome($nome);
-            $this->setCpf($cpf);
-            $this->setRg($rg);
-            $this->setEndereco($endereco);
-            $this->setTelefone1($telefone1);
-            $this->setTelefone2($telefone2);
-            $this->setEmail($email);
-            $this->setSenha($senha);
-        }
-        
+        private $sexo;
+                
         public function getId(){
             return $this->id;
         }
@@ -67,7 +57,10 @@
         }
 
         public function setAniversario($_aniversario){
-            $this->aniversario = $_aniversario;
+            $dia = substr($_aniversario,0,2);
+            $mes = substr($_aniversario,3,2);
+            $ano = substr($_aniversario,6,9);
+            $this->aniversario = $ano."/".$mes."/".$dia;
         }
 
         public function getTelefone1(){
@@ -100,6 +93,24 @@
 
         public function setSenha($_senha){
             $this->senha = $_senha;   
+        }
+
+        public function getSexo(){
+            return $this->sexo;
+        }
+
+        public function setSexo($_sexo){
+            switch($_sexo){
+                case "feminino": 
+                    $this->sexo = "F";
+                    break;
+                case "masculino":
+                    $this->sexo = "M";
+                    break;
+                case "outros":
+                    $this->sexo = "O";
+                    break;
+            }
         }
     }
 ?>

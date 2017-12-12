@@ -143,5 +143,8 @@ INSERT INTO servico (descricao, valor) VALUES ('Sala de Jogos', '10.00');
 INSERT INTO servico (descricao, valor) VALUES ('refeições (cada) - diária', '30.00');
 INSERT INTO servico (descricao, valor) VALUES ('Estacionamento - diária', '10.00');
 INSERT INTO servico (descricao, valor) VALUES ('Estacionamento - mensal', '100.00');
-INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('Agnes Cunha Marques', 'admin', '021.251.200-54', '81086119-74', '(51)99726-4363', '3000.00', '2016/12/21', '16 de dezembro, 1257, Glória - Osório/RS', 'agnescunha', 'duda1011', 1);
+
 INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('root', 'admin', '000.000.000-00', '00000000-00', '(51)99000-0000', '3000.00', '2016/12/21', 'Rua 1 - Osório/RS', 'root', 'root', 1);
+
+
+ALTER TABLE cliente ADD sexo VARCHAR(1) NOT NULL;
