@@ -8,14 +8,40 @@
     }else{
       include 'menu_func.html';
     }
+  }else{
+    header("Location: login_restrito.php");
   }
   $controle = new ClienteControle();
   if (isset($_POST['salvar'])) {
-    $cliente = new Cliente($_POST['nome'],$_POST['rg'],$_POST['cpf'],$_POST['endereco'],$_POST['aniversario'],$_POST['telefone1'],
-          $_POST['telefone2'],$_POST['email'],$_POST['senha']);
-    $controle->insert($cliente);
-     header("Location: index_restrito.php");
+    $nome=$_POST['nome'];
+    $email = $_POST['email'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $endereco = $_POST['endereco'];
+    $aniversario = $_POST['aniversario'];
+    $telefone1 = $_POST['telefone1'];
+    $telefone2 = $_POST['telefone2'];
+    $senha = $_POST['senha'];
+    if (empty($nome) || empty($email) || empty($rg) || empty($cpf) || empty($endereco) || empty($aniversario) || empty($telefone1) || empty($senha)) {
+           echo "<script type=\"text/javascript\">alert(\"Campo obrigatorio em branco!\") </script>";
+    }else{
+      if (($controle->verificarEmail() > 0) || ($controle->verificarRG($rg) > 0) || ($controle->verificarCPF($cpf) > 0)) {
+          if ($controle->verificarEmail($email) > 0) {
+              echo "<script type=\"text/javascript\">alert(\"Email já cadastrado!\") </script>";
+          }
+          if ($controle->verificarRG($rg) > 0) {
+              echo "<script type=\"text/javascript\">alert(\"Rg já cadastrado!\") </script>";
+          }
+          if ($controle->verificarCPF($cpf) > 0) {
+            echo "<script type=\"text/javascript\">alert(\"Cpf já cadastrado!\") </script>";
+          }
+    }else{
+         $cliente = new Cliente($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha);
+          $controle->insert($cliente);
+          header("Location: index_restrito.php");
+    }
   }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,48 +63,48 @@
   <form action="add_cliente.php" method="post">
   	<div class="row">
   	  <div class="form-group col-md-6">
-  	  	<label for="exampleInputEmail1">Nome</label>
+  	  	<label for="exampleInputEmail1">Nome*</label>
   	  	<input type="text" class="form-control" name="nome" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-4">
-  	  	<label for="exampleInputEmail1">RG</label>
+  	  	<label for="exampleInputEmail1">RG*</label>
   	  	<input type="text" class="form-control" name="rg" placeholder="Digite o valor">
   	  </div>
 	</div>
 
     <div class="row">
       <div class="form-group col-md-6">
-        <label for="exampleInputEmail1">Edereço</label>
+        <label for="exampleInputEmail1">Edereço*</label>
         <input type="text" class="form-control" name="endereco" placeholder="Digite o valor">
       </div>
         <div class="form-group col-md-4">
-        <label for="exampleInputEmail1">CPF</label>
+        <label for="exampleInputEmail1">CPF*</label>
         <input type="text" class="form-control" name="cpf" placeholder="Digite o valor">
       </div>
     </div>
 	
 	<div class="row">
 	  <div class="form-group col-md-3">
-  	  	<label for="exampleInputEmail1">Data de Nascimento</label>
+  	  	<label for="exampleInputEmail1">Data de Nascimento*</label>
   	  	<input type="date" class="form-control" name="aniversario" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
-  	  	<label for="exampleInputEmail1">Celular</label>
-  	  	<input type="text" class="form-control" name="telefone1" placeholder="Digite o valor">
+  	  	<label for="exampleInputEmail1">Celular*</label>
+  	  	<input type="tel" class="form-control" name="telefone1" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
   	  	<label for="exampleInputEmail1">Telefone</label>
-  	  	<input type="text" class="form-control" name="telefone2" placeholder="Digite o valor">
+  	  	<input type="tel" class="form-control" name="telefone2" placeholder="Digite o valor">
   	  </div>
 	</div>
 	
 	<div class="row">
   	  <div class="form-group col-md-6">
-  	  	<label for="exampleInputEmail1">Email</label>
+  	  	<label for="exampleInputEmail1">Email*</label>
   	  	<input type="email" class="form-control" name="email" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
-  	  	<label for="exampleInputEmail1">Senha</label>
+  	  	<label for="exampleInputEmail1">Senha*</label>
   	  	<input type="password" class="form-control" name="senha" placeholder="Digite o valor">
   	  </div>
 	</div>
