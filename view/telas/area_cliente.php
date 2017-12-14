@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<!-- <?php
-  //equire_once '../../model/cliente.php';
-  //session_start();
-  //$login_session = $_SESSION['cliente'];
-    //if(isset($login_session)){
-     /// echo"Bem-Vindo, $login_session <br>";
-   // }else{
-    //  echo"Você não pode acessar essa página pois não fez login na página. <br>";
-    //}
-?> -->
+
   <head>
 
     <meta charset="utf-8">
@@ -30,7 +21,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" ></script>
-
+    
     <!-- estilo-->
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/agnes.css" rel="stylesheet">
@@ -39,8 +30,25 @@
 
   <body>
     <?php
+      require_once '../../model/Banco.php';
+      require_once '../../model/Cliente.php';
+  
+      
+      session_start();
+    
+      if(!isset($_SESSION['cliente']) == true){
+        unset($_SESSION['cliente']);
+        header('Location: login.php');
+      }
+      else{
+        $banco = new Banco();
+        $cliente = $banco->pesquisarCliente("email",$_SESSION['cliente']);
+      }
+      
       include 'cabecalho.html';
+      
     ?>
+    
     <section>
       <div class="container">
         <div class="row">
@@ -50,60 +58,81 @@
             <h3 class="section-heading text-uppercase" id="titulo">Dados Pessoais</h3>
           </div>
         </div>
-         <form id="areaForm" name="areaForm" novalidate action= "editar_cliente.php" method="post">
-          <div  id="area_cliente" class="container-fluid">
+         <form id="areaForm" name="areaForm" novalidate method='post'>
+         <div  id="area_cliente" class="container-fluid">
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <b>Nome Completo:</b> 
-                    <input class="form-control" id="nome_cliente" name="nome_cliente" type="text" readonly/>
+                  <b>Nome Completo:</b>
+                    <?php
+                      echo "<input class='form-control' id='nome_cliente' name='nome_cliente' type='text' value='".$cliente->getNome()."' readonly />";
+                    ?>
+                  
                     <!-- readonly: impede de editar o campo - fica somente para leitura-->
                 </div>
                 <div class="col-md-6">
                   <b>Sexo:</b>
-                  <input class="form-control" id="sexo_cliente" name="sexo_cliente" type="text" readonly/>
+                    <?php
+                      echo"<input class='form-control' id='sexo_cliente' name='sexo_cliente' type='text' readonly value='".$cliente->getSexo()."'/>";
+                    ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <b>Endereço:</b>
-                    <input class="form-control" id="endereco_cliente" name="endereco_cliente" type="text" required="required" onblur="validaEndereco();" minlength="10" maxlength="150" readonly/>
+                    <?php
+                      echo "<input class='form-control' id='endereco_cliente' name='endereco_cliente' type='text' required='required' onblur='validaEndereco();' minlength='10' maxlength='150' value='".$cliente->getEndereco()."'/>";
+                    ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <b>Telefone:</b>
-                  <input class="form-control" id="telefone_cliente" name="telefone_cliente" type="text" required="required" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}$" onkeyup="mascaraFone();" onkeypress="mascaraFone();" readonly/>
+                    <?php
+                      echo "<input class='form-control' id='telefone_cliente' name='telefone_cliente' type='text' required='required' pattern='\([0-9]{2}\)[0-9]{5}-[0-9]{4}$' onkeyup='mascaraFone();' onkeypress='mascaraFone();' value='".$cliente->getTelefone1()."'/>";
+                    ?>
                 </div>
                 <div class="col-md-6">
                   <b>Celular:</b>
-                  <input class="form-control" id="celular_cliente" name="celular_cliente" type="text" required="required" pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}$" onkeyup="mascaraCel();" onkeypress="mascaraCel();" readonly/>
+                    <?php
+                      echo "<input class='form-control' id='celular_cliente' name='celular_cliente' type='text' required='required' pattern='\([0-9]{2}\)[0-9]{5}-[0-9]{4}$' onkeyup='mascaraCel();' onkeypress='mascaraCel();' value='".$cliente->getTelefone2()."'/>";
+                    ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <b>CPF:</b>
-                  <input class="form-control" id="cpf_cliente" name="cpf_cliente" type="text" readonly/>
+                    <?php
+                      echo"<input class='form-control' id='cpf_cliente' name='cpf_cliente' type='text' readonly value='".$cliente->getCpf()."'/>";
+                    ?>
                 </div>
                 <div class="col-md-6">
                   <b>RG:</b>
-                  <input class="form-control" id="rg_cliente" name="rg_cliente" type="text" readonly/>
+                    <?php
+                      echo"<input class='form-control' id='rg_cliente' name='rg_cliente' type='text' readonly value='".$cliente->getRg()."'/>";
+                    ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <b>Data de Nascimento:</b>
-                  <input class="form-control" id="nascimento_cliente" name="nascimento_cliente" type="text" readonly/>
+                    <?php
+                      echo"<input class='form-control' id='nascimento_cliente' name='nascimento_cliente' type='text' readonly value='".$cliente->getAniversario()."'/>";
+                    ?>
                 </div>
                 <div class="col-md-6">
-                  <b>E-mail:</b> 
-                  <input class="form-control" id="email_cliente" name="email_cliente" type="email" required="required" onblur="validaEmail();" readonly>
+                  <b>E-mail:</b>
+                    <?php
+                      echo "<input class='form-control' id='email_cliente' name='email_cliente' type='email' required='required' onblur='validaEmail();' readonly value='".$cliente->getEmail()."'/>";
+                    ?>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <b>Senha atual:</b> 
-                  <input class="form-control" id="senha_cliente" name="senha_cliente" type="password" required="required" onblur="validaSenha();" minlength="6" maxlength="8" readonly>
+                    <?php
+                      echo "<input class='form-control' id='senha_cliente' name='senha_cliente' type='password' required='required' onblur='validaSenha();' minlength='6' maxlength='8' value='".$cliente->getSenha()."'/>";
+                    ?>
                 </div>
                 <div class="col-md-6">
                   <b>Confirmar nova senha:</b>
@@ -116,7 +145,7 @@
             <div>
             <div class="clearfix"></div>
             <div class="col-lg-12 text-center">
-              <button id="Button_atualizar" class="btn btn-primary btn-xl text-uppercase" type="submit" onclick="editar_cadastro()";>Atualizar
+              <button id="Button_atualizar" class="btn btn-primary btn-xl text-uppercase" onclick="editar_cadastro()"> Atualizar
               </button>
             </div>
           </div>
@@ -128,30 +157,70 @@
 <div class="col-lg-12 text-center">
  <a id="Button_fazer_reserva" class="btn btn-primary btn-xl text-uppercase" href = "reserva_cliente.php">REALIZAR NOVA RESERVA</a>
 </div>
-<div class="row">
-  <div class="col-lg-12 text-center">
-    <h3 class="section-heading text-uppercase" id="titulo">Histórico de Reservas</h3>
+<section>
+  <div class="container">
+    <div class='row'>
+      <div class='col-lg-12 text-center'>
+        <h3 class='section-heading text-uppercase' id='titulo'>Histórico de Reservas</h3>
+        <h3 class='section-subheading text-muted'>Abaixo você pode visualizar suas últimas 10 reservas realizadas. Obs: Apenas reservas ainda não aprovadas poderão ser canceladas via área do cliente, após a aprovação para realizar cancelamentos somente entrando em contato conosco.</h3>
+      </div>
+    </div>
+    <div id="tabela_historico" name="tabela_historico" class="col-md-8 col-md-offset-2">
+      <h4 class='section-heading text-uppercase' id="subtitulo">Pendentes</h4>
+      <table id="pendentes" name = "pendentes">
+        <thead> <!--cabeçalho da tabela-->
+          <tr>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Tipo de Quarto</th>
+            <th>Valor Diária</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php  
+            echo "<tr>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataI()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataF()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getQuarto()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDiaria()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getStatus()."'></input></td>";
+              echo "<td><button class='btn btn-primary' id='button_cancelar'>Cancelar</button></td>";
+            echo "</tr>";
+          ?>
+        </tbody>
+      </table>
+      <h4 class='section-heading text-uppercase' id="subtitulo">Aprovadas</h4>
+      <table id="aprovadas" name = "aprovadas">
+        <thead> <!--cabeçalho da tabela-->
+          <tr>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Tipo de Quarto</th>
+            <th>Quarto</th>
+            <th>Valor Diária</th>
+            <th>Valor Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <?php
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataI()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataF()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getQuarto()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getNumQuarto()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getValorD()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getValorT()."'></input></td>";
+              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getStatus()."'></input></td>";
+            ?>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-<table id = "historico_reservas">
-  <colgroup span="3"></colgroup>
-    <tr>
-      <th>Agudo</th>
-      <th >Médio</th>
-      <th>Grave</th>
-    </tr>
-    <tr>
-      <td>Trompete</td>
-      <td>Trompa</td>
-      <td>Trombone </td>
-    </tr>
-    <tr>
-      <td>Bb</td>
-      <td>Fa</td>
-      <td>C</td>
-    </tr>
-</table>
-
+</section>
 <?php
   include 'rodape.html';
 ?>

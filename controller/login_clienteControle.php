@@ -2,8 +2,14 @@
 	require_once '../model/Banco.php';
 	require_once '../model/Cliente.php';
 
+	/* caso seja necessario forçar o fim da sessao nos testes */
+	/*
 	session_start();
-
+	session_destroy();
+	*/
+	
+	session_start();
+	
 	$email = $_POST['email'];
 	$senha = $_POST['senha'];
 
@@ -11,8 +17,9 @@
 
 	$cliente = $banco->loginCliente($email,$senha);
 	
-	if($cliente != 0){
-		$_SESSION['cliente'] = $cliente->getNome();
+
+	if($cliente != '0'){
+		$_SESSION['cliente'] = $cliente;
 		header('location:../view/telas/area_cliente.php');
 	}	
 	else{
@@ -20,7 +27,4 @@
 		header('location:../view/telas/login.php');
 	}
 
-	
-	
-	
 ?>

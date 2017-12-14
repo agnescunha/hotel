@@ -257,4 +257,5 @@ function Enviar(){//verifica se todos os campos do formulário foi preenchido co
 	else{
 		document.getElementById("endereco_cliente").focus();
 	}
+
 }

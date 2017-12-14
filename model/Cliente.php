@@ -66,10 +66,16 @@
         }
 
         public function getAniversario(){
-            return $this->aniversario;
+            $_aniversario = $this->aniversario;
+                //converter a data para o padrao PT_BR
+                $ano = substr($_aniversario,0,4);
+                $mes = substr(substr($_aniversario,5,7),0,2); //2 substr pois está repetindo o dia
+                $dia = substr($_aniversario,8,10);
+            return $dia."/".$mes."/".$ano;
         }
 
         public function setAniversario($_aniversario){
+            //converter data para o padrao Americano
             $dia = substr($_aniversario,0,2);
             $mes = substr($_aniversario,3,2);
             $ano = substr($_aniversario,6,9);
@@ -109,18 +115,30 @@
         }
 
         public function getSexo(){
+            switch($this->sexo){
+                case 'F' : 
+                    $this->sexo = "Feminino";
+                    break;
+                case 'M' :
+                    $this->sexo = "Masculino";
+                    break;
+                case 'O':
+                    $this->sexo = "Outro";
+                    break;
+            }
             return $this->sexo;
         }
 
         public function setSexo($_sexo){
-            switch($_sexo){
-                case "feminino": 
+            $a = strtolower($_sexo);
+            switch($a){
+                case ("feminino" || 'f') : 
                     $this->sexo = "F";
                     break;
-                case "masculino":
+                case ("masculino" || 'm'):
                     $this->sexo = "M";
                     break;
-                case "outros":
+                case ("outros" || 'o'):
                     $this->sexo = "O";
                     break;
             }
