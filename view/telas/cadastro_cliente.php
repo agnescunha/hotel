@@ -37,14 +37,6 @@
     ?>
     
     <section>
-
-    <?php
-      if(isset($_COOKIE['cadastroCliente'])){
-        echo "<script type=\"text/javascript\">alert(\"ERRO: Campo em branco!\") </script>";
-        //setcookie('cadastroCliente');
-        //header('location:../view/telas/login.php');
-      }
-    ?>
         <div class='container'>
           <div class='row'>
             <div class='col-lg-12 text-center'>
@@ -54,7 +46,7 @@
           </div>
           <div class='row' id='cadastro_cliente'>
             <div class='col-lg-8'>
-              <form id='cadastroForm' name='cadastroForm' action= '../../controller/controle_cadastro_cliente.php' method='post'>
+              <form id='cadastroForm' name='cadastroForm' action= '../../controller/cadastro_cliente.php' method='post'>
                 <div class='row'>
                   <div class='col-md-9'>
                     <div class='form-group'>

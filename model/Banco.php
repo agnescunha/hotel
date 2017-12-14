@@ -53,6 +53,36 @@
             return $retorno;
         }
 
+        public function loginCliente($email, $senha){
+            $sql = "SELECT * FROM cliente WHERE email = '".$email."' AND senha = '".$senha."';";
+            
+            $this->abrirConexao();
+            $retorno = $this->conexao->query($sql);
+            $this->fecharConexao();
+
+            $cliente = new Cliente();
+
+            foreach($retorno as $a){
+                $cliente->setId($a['id']);
+                $cliente->setNome($a['nome']);
+                $cliente->setRg($a['rg']);
+                $cliente->setCpf($a['cpf']);
+                $cliente->setEndereco($a['endereco']);
+                $cliente->setAniversario($a['data_nascimento']);
+                $cliente->setTelefone1($a['telefone1']);
+                $cliente->setTelefone2($a['telefone2']);
+                $cliente->setEmail($a['email']);
+                $cliente->setSexo($a['sexo']);
+            }
+            if(mysqli_num_rows($retorno) > 0){
+                return $cliente;
+            }
+            else{
+                return 0;
+            }
+            
+        }
+
         public function pesquisaReserva($idCliente, $status){
 
         }

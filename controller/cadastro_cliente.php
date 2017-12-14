@@ -17,10 +17,6 @@
     $banco = new Banco();
 
     if($banco->cadastrarCliente($cliente) == 1){
-        setcookie('cadastroCliente','1');
-        header('location:../view/telas/cadastro_cliente.php');
-        //header('location:../view/telas/login.php');
+        header('location:../view/telas/login.php');
     }
-
-    //var_dump($_COOKIE);
 ?>

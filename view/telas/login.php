@@ -49,17 +49,17 @@
         </div>
         <div id="login" class="row">
           <div class="col-lg-8">
-            <form id="loginForm" name="sentMessage" novalidate action="../../controller/login_clienteControle.php">
+            <form id="loginForm" name="sentMessage" action="../../controller/login_clienteControle.php" method='post'>
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
-                      <input class="form-control" id="email_cliente" type="email" placeholder="Seu e-mail *" required data-validation-required-message="Por favor, digite seu e-mail." name="email">
+                      <input class="form-control" id="email_cliente" name="email" type="email" placeholder="Seu e-mail *" required data-validation-required-message="Por favor, digite seu e-mail.">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" id="senha_cliente" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha." name="senha">
+                      <input class="form-control" id="senha_cliente" name="senha" type="password" placeholder="Sua senha *" required data-validation-required-message="Por favor digite sua senha.">
                   </div>
                 </div>
-                <div class="clearfix"></div>
+                <!--<div class="clearfix"></div>-->
                 <div class="col-lg-12 text-center">
                     <div id="esqueci_minha_senha">
                       <a href="#" onclick="esqueci_a_senha()">Esqueci minha senha</a>
@@ -77,7 +77,7 @@
                           <td>
                             <form name="form_esqueci" id="form_esqueci">
                               <label>
-                                <input type="email" name="email" id="campo_email_esqueci" maxlength="100" placeholder="Digite seu email" class="inpt" onkeypress="if(hitEnter()) { ajaxM('process/actions.php?action=30','process','formLogin',2) }">
+                                <input type="email" name="email_" id="campo_email_esqueci" maxlength="100" placeholder="Digite seu email" class="inpt" onkeypress="if(hitEnter()) { ajaxM('process/actions.php?action=30','process','formLogin',2) }">
                               </label>
                             </form>
                           </td>
@@ -94,7 +94,7 @@
               </div>
 <!-- ***** termina aqui *** -->
 
-                  <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit" name="entrar">Entrar</button>
+                  <button id="Button_login" class="btn btn-primary btn-xl text-uppercase" type="submit">Entrar</button>
                 </div>
               </div>
             </form> <!-- TODO O FORMULÁRIO DE LOGIN-->
