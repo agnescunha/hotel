@@ -1,6 +1,6 @@
 <?php
   require_once '../../model/funcionario.php';
-   require_once '../../controller/ClienteControle.php';
+   require_once '../../controller/FuncionarioControle.php';
   session_start();
   if($_SESSION['logado'] == TRUE){
     if ($_SESSION['funcionario']->getEhAdmin() == 1) {
@@ -11,24 +11,26 @@
   }else{
     header("Location: login_restrito.php");
   }
-  $controle = new ClienteControle();
+  $controle = new FuncionarioControle();
   if (isset($_POST['salvar'])) {
     $nome=$_POST['nome'];
-    $email = $_POST['email'];
     $rg = $_POST['rg'];
     $cpf = $_POST['cpf'];
     $endereco = $_POST['endereco'];
-    $aniversario = $_POST['aniversario'];
-    $telefone1 = $_POST['telefone1'];
-    $telefone2 = $_POST['telefone2'];
+    $salario = $_POST['salario'];
+    $celular = $_POST['celular'];
+    $funcao = $_POST['funcao'];
     $senha = $_POST['senha'];
-    $sexo = $_POST['gender'];
-    if (empty($nome) || empty($email) || empty($rg) || empty($cpf) || empty($endereco) || empty($aniversario) || empty($telefone1) || empty($senha)|| empty($sexo)){
+    $login = $_POST['login'];
+    $demissao =$_POST['demissao'];
+    $admissao = $_POST['admissao'];
+    $permissao = $_POST['permissao'];
+    if (empty($nome) || empty($rg) || empty($cpf) || empty($endereco) || empty($funcao) || empty($celular) || empty($senha) || empty($login) || empty($admissao) || empty($salario)){
            echo "<script type=\"text/javascript\">alert(\"Campo obrigatorio em branco!\") </script>";
     }else{
-      if (($controle->verificarEmail() > 0) || ($controle->verificarRG($rg) > 0) || ($controle->verificarCPF($cpf) > 0)) {
-          if ($controle->verificarEmail($email) > 0) {
-              echo "<script type=\"text/javascript\">alert(\"Email já cadastrado!\") </script>";
+      if (($controle->verificarLogin() > 0) || ($controle->verificarRG($rg) > 0) || ($controle->verificarCPF($cpf) > 0)) {
+          if ($controle->verificarLogin($login) > 0) {
+              echo "<script type=\"text/javascript\">alert(\"Login já cadastrado!\") </script>";
           }
           if ($controle->verificarRG($rg) > 0) {
               echo "<script type=\"text/javascript\">alert(\"Rg já cadastrado!\") </script>";
@@ -37,9 +39,10 @@
             echo "<script type=\"text/javascript\">alert(\"Cpf já cadastrado!\") </script>";
           }
     }else{
-         $cliente = new Cliente($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha,$sexo);
-          $controle->insert($cliente);
-          header("Location: index_restrito.php");
+         $funcionario = new Funcionario($nome,$funcao,$cpf,$rg,$celular,$salario,$admissao,$demissao,$endereco,$login,$senha,$permissao);
+          $controle->insert($funcionario);
+          header("Location: index_funcionario.php");
+
     }
   }
 }
@@ -59,9 +62,9 @@
  
  <div id="main" class="container-fluid" style="margin-top: 50px">
   
-  <h3 class="page-header">Cadastrar Cliente</h3>
+  <h3 class="page-header">Cadastrar Funcionário</h3>
   
-  <form action="add_cliente.php" method="post">
+  <form action="add_funcionario.php" method="post">
   	<div class="row">
   	  <div class="form-group col-md-6">
   	  	<label for="exampleInputEmail1">Nome*</label>
@@ -83,48 +86,54 @@
         <input type="text" class="form-control" name="cpf" placeholder="Digite o valor">
       </div>
     </div>
+
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="exampleInputEmail1">Função*</label>
+        <input type="text" class="form-control" name="funcao" placeholder="Digite o valor">
+      </div>
+        <div class="form-group col-md-3">
+        <label for="exampleInputEmail1">Salario*</label>
+        <input type="tel" class="form-control" name="salario" placeholder="Digite o valor">
+      </div>
+    </div>
 	
 	<div class="row">
 	  <div class="form-group col-md-3">
-  	  	<label for="exampleInputEmail1">Data de Nascimento*</label>
-  	  	<input type="date" class="form-control" name="aniversario" placeholder="Digite o valor">
+  	  	<label for="exampleInputEmail1">Admissão*</label>
+  	  	<input type="date" class="form-control" name="admissao" placeholder="Digite o valor">
   	  </div>
-     <div class="form-group col-md-3">
-        <label for="exampleInputEmail1">Sexo*</label><br>
-        Feminino<input type="radio" name="gender" value="F">&nbsp;
-        Maculino<input type="radio" name="gender" value="M">&nbsp;
-        Outro<input type="radio" name="gender" value="O">
+      <div class="form-group col-md-3">
+        <label for="exampleInputEmail1">Demissão</label>
+        <input type="date" class="form-control" name="demissao" placeholder="Digite o valor">
+      </div>
+       <div class="form-group col-md-3">
+        <label for="exampleInputEmail1">Celular*</label>
+        <input type="tel" class="form-control" name="celular" placeholder="Digite o valor">
       </div>
 </div>
 
-
-<div class="row">
-	  <div class="form-group col-md-3">
-  	  	<label for="exampleInputEmail1">Celular*</label>
-  	  	<input type="tel" class="form-control" name="telefone1" placeholder="Digite o valor">
-  	  </div>
-	  <div class="form-group col-md-3">
-  	  	<label for="exampleInputEmail1">Telefone</label>
-  	  	<input type="tel" class="form-control" name="telefone2" placeholder="Digite o valor">
-  	  </div>
-	</div>
-
 	<div class="row">
-  	  <div class="form-group col-md-6">
-  	  	<label for="exampleInputEmail1">Email*</label>
-  	  	<input type="email" class="form-control" name="email" placeholder="Digite o valor">
+  	  <div class="form-group col-md-3">
+  	  	<label for="exampleInputEmail1">Login*</label>
+  	  	<input type="text" class="form-control" name="login" placeholder="Digite o valor">
   	  </div>
 	  <div class="form-group col-md-3">
   	  	<label for="exampleInputEmail1">Senha*</label>
   	  	<input type="password" class="form-control" name="senha" placeholder="Digite o valor">
   	  </div>
+      <div class="form-group col-md-3">
+        <label for="exampleInputEmail1">Permissão*</label><br>
+        Administrador&nbsp;<input type="radio" name="permissao" value=0>&nbsp;&nbsp;
+        Funcionario&nbsp;<input type="radio" name="permissao" value=1>
+      </div>
 	</div>
 	
 	
 	<div class="row">
 	  <div class="col-md-12">
 	  	<button type="submit" class="btn btn-primary" name="salvar">Salvar</button>
-		<a href="index_restrito.php" class="btn btn-default">Cancelar</a>
+		<a href="index_funcionario.php" class="btn btn-default">Cancelar</a>
 	  </div>
 	</div>
 

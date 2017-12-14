@@ -4,7 +4,7 @@
     class Banco{
         var $endereco = 'localhost';
         var $username = 'root';
-        var $senha = 'heinke1985';
+        var $senha = '';
         var $database = 'hotel';
         
         private $conexao;

@@ -11,6 +11,19 @@
         private $email;
         private $senha;
         private $sexo;
+
+        public function Cliente($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha,$sexo){
+            $this->setNome($nome);
+            $this->setCpf($cpf);
+            $this->setRg($rg);
+            $this->setEndereco($endereco);
+            $this->aniversario = $aniversario;
+            $this->setTelefone1($telefone1);
+            $this->setTelefone2($telefone2);
+            $this->setEmail($email);
+            $this->setSenha($senha);
+            $this->sexo = $sexo;
+        }
                 
         public function getId(){
             return $this->id;

@@ -1,7 +1,6 @@
 ﻿<?php
   require_once '../../model/funcionario.php';
-  require_once '../../model/Cliente.php';
-  require_once '../../controller/ClienteControle.php';
+  require_once '../../controller/FuncionarioControle.php';
   session_start();
   if($_SESSION['logado'] == TRUE){
     if ($_SESSION['funcionario']->getEhAdmin() == 1) {
@@ -12,15 +11,14 @@
   }else{
     header("Location: login_restrito.php");
   }
-    $controle = new ClienteControle();
+    $controle = new FuncionarioControle();
      $id = $_GET["id"];
   if (isset($_POST['update'])) {
-       $cliente = new Cliente($_POST['nome'],$_POST['rg'],$_POST['cpf'],$_POST['endereco'],$_POST['aniversario'],$_POST['telefone1'],
-          $_POST['telefone2'],$_POST['email'],$_POST['senha'],$_POST['gender']);
-       $cliente->setId($id);
-       $controle->update($cliente);
+          $funcionario = new Funcionario($_POST['nome'],$_POST['funcao'],$_POST['cpf'],$_POST['rg'],$_POST['celular'],$_POST['salario'],$_POST['admissao'],$_POST['demissao'],$_POST['endereco'],$_POST['login'],$_POST['senha'],$_POST['permissao']);
+       $funcionario->setId($id);
+       $controle->update($funcionario);
   }
-  $cliente = $controle->selectFromId($id);
+  $funcionario = $controle->selectFromId($id);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br"> 
@@ -44,62 +42,74 @@
 
 
  <div id="main" class="container-fluid" style="margin-top: 50px">
-  <h3 class="page-header">Visualizar Cliente</h3>
+  <h3 class="page-header">Visualizar Funcionario</h3>
 
 <?php
  echo" <div class=\"row\">
     <div class=\"col-md-4\">
       <p><strong>Id</strong></p>
-  	  <p>". $cliente->getId() ."</p>
+  	  <p>". $funcionario->getId() ."</p>
     </div>".
-	"<div class=\"col-md-4\">
+	"<div class=\"col-md-8\">
       <p><strong>Nome</strong></p>
-  	  <p>". $cliente->getNome() ."</p>
+  	  <p>". $funcionario->getNome() ."</p>
     </div>".
 	"<div class=\"col-md-4\">
       <p><strong>CPF</strong></p>
-  	  <p>". $cliente->getCpf() ."</p>
+  	  <p>". $funcionario->getCpf() ."</p>
     </div>".
   "<div class=\"col-md-4\">
       <p><strong>RG</strong></p>
-  	  <p>". $cliente->getRg() ."</p>
+  	  <p>". $funcionario->getRg() ."</p>
     </div>".
 	 "<div class=\"col-md-4\">
       <p><strong>Celeular</strong></p>
-  	  <p>". $cliente->getTelefone1() ."</p>
+  	  <p>". $funcionario->getCelular() ."</p>
     </div>".
 	"<div class=\"col-md-4\">
-      <p><strong>Telefone</strong></p>
-  	  <p>". $cliente->getTelefone2() ."</p>
+      <p><strong>Funcao</strong></p>
+  	  <p>". $funcionario->getFuncao() ."</p>
   </div>".
   "<div class=\"col-md-4\">
-      <p><strong>Data Nascimento</strong></p>
-      <p>". $cliente->getAniversario() ."</p>
+      <p><strong>Salario</strong></p>
+      <p>". $funcionario->getSalario() ."</p>
   </div>".
   "<div class=\"col-md-4\">
-      <p><strong>Sexo</strong></p>
-      <p>". $cliente->getSexo() ."</p>
+      <p><strong>Admissão</strong></p>
+      <p>". $funcionario->getAdmissao() ."</p>
+  </div>".
+  "<div class=\"col-md-4\">
+      <p><strong>Demissão</strong></p>
+      <p>". $funcionario->getDemissao() ."</p>
+  </div>".
+  "<div class=\"col-md-4\">
+      <p><strong>Endereço</strong></p>
+      <p>". $funcionario->getEndereco() ."</p>
+    </div>
   </div>".
 	"<div class=\"col-md-4\">
-      <p><strong>Email</strong></p>
-  	  <p>". $cliente->getEmail() ."</p>
+      <p><strong>Login</strong></p>
+  	  <p>". $funcionario->getLogin() ."</p>
     </div>".
 	"<div class=\"col-md-4\">
       <p><strong>Senha</strong></p>
-  	  <p>". $cliente->getSenha() ."</p>
+  	  <p>". $funcionario->getSenha() ."</p>
     </div>".
-  "<div class=\"col-md-8\">
-      <p><strong>Endereço</strong></p>
-      <p>". $cliente->getEndereco() ."</p>
-    </div>
-  </div>
+     "<div class=\"col-md-4\">
+      <p><strong>Permissao</strong></p>";
+if ($funcionario->getEhAdmin() == 1) {
+  echo "<p>Administrador</p>";
+}else if ($funcionario->getEhAdmin() == 1) {
+  echo "<p>Funcionário</p>";
+}
 
- <hr />
+echo"  </div>
+<hr />
  <div id=\"actions\" class=\"row\">
    <div class=\"col-md-12\">
-     <a href=\"index_restrito.php\" class=\"btn btn-primary\">Fechar</a>
-	 <a href=\"edit_cliente.php?id=$id\" class=\"btn btn-default\">Editar</a>
-	 <a href=\"modal_cliente.php?id=$id\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#delete-modal\" name='excluir'>Excluir</a>
+     <a href=\"index_funcionario.php\" class=\"btn btn-primary\">Fechar</a>
+	 <a href=\"edit_funcionario.php?id=$id\" class=\"btn btn-default\">Editar</a>
+	 <a href=\"modal_funcionario.php?id=$id\" class=\"btn btn-default\" data-toggle=\"modal\" data-target=\"#delete-modal\" name='excluir'>Excluir</a>
    </div>
  </div>";
  ?>
