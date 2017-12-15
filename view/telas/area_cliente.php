@@ -1,3 +1,17 @@
+    <?php
+       //deslogar do sistema - sessions e cookies
+        if(isset($_GET['botao_sair'])){
+          if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+              session_name(), '', time() - 42000,
+              $params["path"], $params["domain"],
+              $params["secure"], $params["httponly"]
+            );
+            header('Location: login.php');
+          }
+        }
+    ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,16 +46,14 @@
     <?php
       require_once '../../model/Banco.php';
       require_once '../../model/Cliente.php';
-  
-      
+        
       session_start();
 
-      sleep(3);
-      
       if(!isset($_SESSION['cliente']) == true){
         unset($_SESSION['cliente']);
         header('Location: login.php');
       }
+
       else{
         $banco = new Banco();
         $cliente = $banco->pesquisarCliente("email",$_SESSION['cliente']);
@@ -50,16 +62,13 @@
       include 'cabecalho.html';
       
     ?>
-    
+<!-- caixa de login -->
     <div id = "caixaLogin">
-      <form method='post'>
-        <?php 
-          echo $cliente->getNome().'<br><br>';
-        ?>
-        <button id = "button_sair" class='btn btn-primary'>Sair</button>
+      <form method='get'>
+        <?php echo $cliente->getNome().'<br><br>';?>
+          <button id = "button_sair" name="botao_sair" class="btn btn-primary" type="submit">Sair</button>
       </form>
     </div>
-    
     <section>
       <div class="container">
         <div class="row">
@@ -166,7 +175,7 @@
   </div>
   
   <?php
-  //atualizando o cliente
+  //atualizando o cliente (NAO ESTÁ FUNCIONANDO)
     if(isset($_POST['Button_atualizar'])){
       $cliente->setEndereco($_POST["endereco_cliente"]);
       $cliente->setTelefone1($_POST["telefone_cliente"]);
@@ -175,7 +184,6 @@
       $banco->atualizarCliente($cliente);
     }
   ?>
-  
   
 </section>
 <div class="col-lg-12 text-center">

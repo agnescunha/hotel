@@ -1,3 +1,17 @@
+    <?php
+        //deslogar do sistema - sessions e cookies
+        if(isset($_GET['botao_sair'])){
+          if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+              session_name(), '', time() - 42000,
+              $params["path"], $params["domain"],
+              $params["secure"], $params["httponly"]
+            );
+            header('Location: login.php');
+          }
+        }
+    ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -40,10 +54,12 @@
     <?php
       include 'cabecalho.html';
     ?>
-
-    <div id = "caixaLogin">
-      <?php echo $cliente->getNome().'<br><br>'?>
-      <button id = "button_sair" class='btn btn-primary'>Sair</button>
+<!-- caixa de login -->
+       <div id = "caixaLogin">
+      <form method='get'>
+        <?php echo $cliente->getNome().'<br><br>';?>
+          <button id = "button_sair" name="botao_sair" class="btn btn-primary" type="submit">Sair</button>
+      </form>
     </div>
 
   <!-- reserva -->
