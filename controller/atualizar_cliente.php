@@ -24,6 +24,5 @@
         $banco = new Banco();
         $banco->atualizarCliente($cliente1);
         header('Location: ../view/telas/area_cliente.php');
-        echo"<script>alert('Dados cadastrados com sucesso!');</script>";
     }
 ?>

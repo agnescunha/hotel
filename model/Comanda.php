@@ -85,4 +85,65 @@
             $this->status = $_status;
         }
     }
+
+class Reserva{
+    private $id;
+    private $cliente;
+    private $comanda;
+    private $dataInicio;
+    private $dataSaida;
+    private $motivo;
+    private $status;
+
+        public function getId(){
+            return $this->id;
+        }
+
+        public function setId($id){
+            $this->id = $id;
+        }
+        public function getCliente(){
+            return $this->cliente;
+        }
+
+        public function setCliente($cliente){
+            $this->cliente = $cliente;
+        }
+        public function getComanda(){
+            return $this->comanda;
+        }
+
+        public function setComanda($comanda){
+            $this->comanda = $comanda;
+        }
+        public function getdataInicio(){
+            return $this->dataInicio;
+        }
+
+        public function setdataInicio($dataInicio){
+            $this->dataInicio = $dataInicio;
+        }
+        public function getdataSaida(){
+            return $this->dataSaida;
+        }
+
+        public function setdataSaida($dataSaida){
+            $this->dataSaida = $dataSaida;
+        }
+        public function getMotivo(){
+            return $this->motivo;
+        }
+
+        public function setMotivo($motivo){
+            $this->motivo = $motivo;
+        }
+        public function getStatus(){
+            return $this->status;
+        }
+
+        public function setStatus($status){
+            $this->status = $status;
+        }
+}
+
 ?>

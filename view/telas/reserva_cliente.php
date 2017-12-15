@@ -50,8 +50,14 @@
         $banco = new Banco();
         $cliente = $banco->pesquisarCliente("email",$_SESSION['cliente']);
       }
-    ?>
-    <?php
+
+      if(isset($_GET['botao_sair'])){
+        unset($_SESSION);
+        session_destroy();
+        header('Location: login.php');
+    }
+
+
       include 'cabecalho.html';
     ?>
 <!-- caixa de login -->
@@ -71,7 +77,7 @@
           <h3 class="section-subheading text-muted">Preencha o formulário abaixo para solicitar sua reserva de quarto.</h3>
         </div>
       </div>
-         <form id="reservaForm" name="sentMessage" novalidate>
+         <form id="reservaForm" name="sentMessage" novalidate action='../../controller/reserva.php' method='post'>
             <div class="container-fluid">
               <div class="form-group">
                 <div class="row">
@@ -88,7 +94,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <b>Tipo de Quarto:</b>
-                    <select name="tipo_quarto">
+                    <select name="tipo_quarto" id='tipo_quarto' onclick="reservaQuarto();">
                       <option value="economico">Econômico</option>
                       <option value="suite">Suíte</option>
                       <option value="premium">Premium</option>
@@ -99,7 +105,9 @@
                   <br />
                 <div class="row">
                   <div class="col-md-6">
-                    <b>Valor da Diária: </b><input class="form-control" id="valor_diaria" type="text" readonly/>
+                    <b>Valor da Diária: </b>
+                    <input class='form-control' id='valor_diaria' type='text' readonly />
+                    
                   </div>
                   <div class="col-md-6">
                     <b>Total a Pagar:</b>  <input class="form-control" id="valor_total" type="text" readonly/><br />
@@ -135,6 +143,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="../js/agency.min.js"></script>
+    <script src="../js/validacoes_clientes.js"></script>
 
 </body>
 

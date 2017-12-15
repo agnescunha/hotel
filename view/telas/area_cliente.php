@@ -1,17 +1,3 @@
-    <?php
-       //deslogar do sistema - sessions e cookies
-       /*if(isset($_GET['botao_sair'])){
-        if (ini_get("session.use_cookies")) {
-          $params = session_get_cookie_params();
-          setcookie(
-            session_name(), '', time() - 42000,
-            $params["path"], $params["domain"],
-            $params["secure"], $params["httponly"]
-          );
-          header('Location: login.php');
-        }
-      }  */ 
-    ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -210,17 +196,41 @@
         <tbody>
           <tr>
           <?php 
-              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataI()."'></input></td>";
-              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataF()."'></input></td>";
-              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getQuarto()."'></input></td>";
-              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDiaria()."'></input></td>";
-              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getStatus()."'></input></td>";
-              //echo "<td><button class='btn btn-primary' id='button_cancelar'>Cancelar</button></td>";
+              $pendentes = $banco->reservasPendentes($cliente);
+              foreach($pendentes as $a){
+                $inicio = $a['inicio'];
+                  $ano = substr($inicio,0,4);
+                  $mes = substr(substr($inicio,5,7),0,2); //2 substr pois está repetindo o dia
+                  $dia = substr($inicio,8,10);
+                $saida = $a['saida'];
+                  $ano = substr($saida,0,4);
+                  $mes = substr(substr($saida,5,7),0,2); //2 substr pois está repetindo o dia
+                  $dia = substr($saida,8,10);
+                switch($a['classe']){
+                  case 'a':
+                    $classe = 'Premium';
+                    break;
+                  case 'b':
+                    $classe = 'Suite';
+                    break;
+                  case 'c':
+                    $classe = 'Economica';
+                    break;
+                }
+      
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='date' value = '".$inicio."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='date' value = '".$saida."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$classe."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='' value = 'R$ ".$a['valor'].",00'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$a['status_reserva']."'></input></td>";
+                echo "<td><button class='btn btn-primary' id='button_cancelar'>Cancelar</button></td>";
+                echo "</tr>";
+              }
           ?>
-          </tr>
+
         </tbody>
       </table>
-      <h4 class='section-heading text-uppercase' id="subtitulo">Aprovadas</h4>
+      <h4 class='section-heading text-uppercase' id="subtitulo">Histórico</h4>
       <table id="aprovadas" name = "aprovadas">
         <thead> <!--cabeçalho da tabela-->
           <tr>
@@ -236,15 +246,40 @@
         <tbody>
           <tr>
             <?php
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataI()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataF()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getQuarto()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getNumQuarto()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getValorD()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getValorT()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getStatus()."'></input></td>";
+              $historico = $banco->ReservasConcluidas($cliente);
+
+              foreach($historico as $a){
+                $inicio = $a['inicio'];
+                  $ano = substr($inicio,0,4);
+                  $mes = substr(substr($inicio,5,7),0,2); //2 substr pois está repetindo o dia
+                  $dia = substr($inicio,8,10);
+                $saida = $a['saida'];
+                  $ano = substr($saida,0,4);
+                  $mes = substr(substr($saida,5,7),0,2); //2 substr pois está repetindo o dia
+                  $dia = substr($saida,8,10);
+                switch($a['classe']){
+                  case 'a':
+                    $classe = 'Premium';
+                    break;
+                  case 'b':
+                    $classe = 'Suite';
+                    break;
+                  case 'c':
+                    $classe = 'Economica';
+                    break;
+                }
+      
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='date' value = '".$inicio."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='date' value = '".$saida."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$classe."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$a['num_quarto']."'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = 'R$ ".$a['valor'].",00'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = 'R$ ".(($a['dias']*$a['valor'])+$a['total']).",00'></input></td>";
+                echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$a['status_reserva']."'></input></td>";
+                echo "</tr>";
+              }
+              
             ?>
-          </tr>
         </tbody>
       </table>
     </div>

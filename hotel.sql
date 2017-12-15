@@ -177,7 +177,7 @@ INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quan
 INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (6, 11, 2, 1, 2, 1, '500.00', 'Pendente', 5);
 INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (7, 12, 3, 1, 1, 3, '150.00', 'Pendente', 6);
 INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (8, 12, 2, 3, 3, 5, '50.00', 'Pendente', 8);
-INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (9, 14, 3, 4, 4, 1, '200.00', 'Pendente', 7);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (9, 3, 3, 4, 4, 1, '200.00', 'Pendente', 7);
 
 INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (1, 1, '2017/03/10', '2017/03/15', 'férias', 'Concluída');
 INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (2, 2, '2017/01/10', '2017/02/10', '', 'Concluída');

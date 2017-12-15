@@ -257,5 +257,50 @@ function Enviar(){//verifica se todos os campos do formulário foi preenchido co
 	else{
 		document.getElementById("endereco_cliente").focus();
 	}
+}
+
+function reservaQuarto(){
+	var quarto = document.getElementById('tipo_quarto').value;
+	var total;
+	switch(quarto){
+		case "economico":
+			total = 115;
+			break;
+		case "suite":
+			total = 200;
+			break;
+		case "premium":
+			total = 300;	
+			break;
+	}
+	document.getElementById('valor_diaria').value = total;
+
+	var inicio = document.getElementById('entrada_cliente').value;
+	var saida = document.getElementById('entrada_cliente').value;
+
+	var diaInicio = inicio.substring(8,10);
+	var mesInicio = inicio.substring(5,7);
+	var anoInicio = inicio.substring(0,4);
+	
+	var diaSaida = saida.substring(8,10);
+	var mesSaida = saida.substring(5,7);
+	var anoSaida = saida.substring(0,4);
+
+	var tempo = 0;
+	var aux = 0;
+	if(anoSaida == anoInicio){
+		if(mesSaida == mesInicio){
+			alert("oi");
+			tempo = diaSaida - diaInicio;
+		}
+		else{
+			if(diaSaida - diaInicio > 30 && diaSaida > diaInicio){
+				alert("oi2");
+				tempo = ((mesSaida - mesInicio)* 30) + diaSaida - diaInicio;
+			}
+		}
+	}
+
+	document.getElementById('valor_total').value = tempo*total;
 
 }
