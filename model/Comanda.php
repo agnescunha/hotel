@@ -147,7 +147,6 @@ class Reserva{
         }
 }
 
-=======
 <?php
     include 'model\Cliente';
     include 'model\Funcionario';
