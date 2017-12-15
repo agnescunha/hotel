@@ -290,12 +290,10 @@ function reservaQuarto(){
 	var aux = 0;
 	if(anoSaida == anoInicio){
 		if(mesSaida == mesInicio){
-			alert("oi");
 			tempo = diaSaida - diaInicio;
 		}
 		else{
 			if(diaSaida - diaInicio > 30 && diaSaida > diaInicio){
-				alert("oi2");
 				tempo = ((mesSaida - mesInicio)* 30) + diaSaida - diaInicio;
 			}
 		}

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
     include 'model\Cliente';
     include 'model\Funcionario';
