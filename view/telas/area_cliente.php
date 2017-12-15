@@ -173,7 +173,7 @@
             <div>
             <div class="clearfix"></div>
             <div class="col-lg-12 text-center">
-              <button id="Button_atualizar" name="Button_atualizar" class="btn btn-primary btn-xl text-uppercase"> Atualizar
+              <button id="Button_atualizar" name="Button_atualizar" onclick = "alert('Dados cadastrados com sucesso!')" class="btn btn-primary btn-xl text-uppercase"> Atualizar
               </button>
             </div>
           </div>
@@ -181,17 +181,6 @@
       </form>
     </div>
   </div>
-  
-  <?php
-  //atualizando o cliente (NAO ESTÁ FUNCIONANDO)
-    /*if(isset($_POST['Button_atualizar'])){
-      $cliente->setEndereco($_POST["endereco_cliente"]);
-      $cliente->setTelefone1($_POST["telefone_cliente"]);
-      $cliente->setTelefone2($_POST["celular_cliente"]);
-      $cliente->setSenha($_POST["senha_cliente"]);
-      $banco->atualizarCliente($cliente);
-    }*/
-  ?>
   
 </section>
 <div class="col-lg-12 text-center">

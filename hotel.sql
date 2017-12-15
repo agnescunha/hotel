@@ -85,6 +85,7 @@ CREATE INDEX idx_RESERVA_INICIO ON reserva(inicio);
 CREATE INDEX idx_RESERVA_SAIDA  ON reserva(saida);
 
 ALTER TABLE cliente ADD sexo VARCHAR(1) NOT NULL;
+ALTER TABLE comanda ADD num INTEGER NOT NULL;
 
 INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (101, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro, mesa de apoio.', '115.00', 'c');
 INSERT INTO quarto (num_quarto, descricao, valor, classe) VALUES (102, 'ar condicionado, cama de casal ou solteiro, televisão, guarda-roupa, banheiro, mesa de apoio.', '115.00', 'c');
@@ -148,40 +149,41 @@ INSERT INTO servico (descricao, valor) VALUES ('refeições (cada) - diária', '
 INSERT INTO servico (descricao, valor) VALUES ('Estacionamento - diária', '10.00');
 INSERT INTO servico (descricao, valor) VALUES ('Estacionamento - mensal', '100.00');
 
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Agnes Cunha Marques', '9876543217', '012.345.678-89', 'Rua A nº 2', '1992-11-20', '(51)99999-9999', '(51)88888-8888', 'agnescunha20@gmail.com', '123456', 'F');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Adriana Machado', '2456859574', '321.654.987-84', 'Rua 9, n. 50 - Osório', '1985/10/11', '(51)99548-6251', '(51)99548-6251', 'adriana@gmail.com', '123456', 'F');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Adriano Azevedo', '2456859575', '221.654.987-84', 'Rua 10, n. 50 - Osório', '1985/10/10', '(51)99548-6252', '(51)99548-6252', 'adriano@gmail.com', '123456', 'M');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Rafael Cardoso', '2456859576', '121.654.987-84', 'Rua 8, n. 50 - Osório', '1985/10/12', '(51)99548-6253', '(51)99548-6253', 'rafael@gmail.com', '123456', 'M');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Carlos Adri', '2456859577', '421.654.987-84', 'Rua 7, n. 50 - Osório', '1985/10/13', '(51)99548-6254', '(51)99548-6254', 'carlos@gmail.com', '123456', 'M');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Eduardo Inglês', '2456859578', '521.654.987-84', 'Rua 6, n. 50 - Osório', '1985/10/14', '(51)99548-6255', '(51)99548-6255', 'eduardo@gmail.com', '123456', 'M');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Márcia Reck', '2456859579', '621.654.987-84', 'Rua 5, n. 50 - Osório', '1985/10/15', '(51)99548-6256', '(51)99548-6256', 'marcia@gmail.com', '123456', 'F');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Carla Miguel', '2456859573', '721.654.987-84', 'Rua 4, n. 50 - Osório', '1985/10/16', '(51)99548-6257', '(51)99548-6257', 'carla@gmail.com', '123456', 'F');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Carol Ferri', '2456859572', '821.654.987-84', 'Rua 3, n. 50 - Osório', '1985/10/17', '(51)99548-6258', '(51)99548-6258', 'carol@gmail.com', '123456', 'F');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Tiago Jesus', '2456859571', '921.654.987-84', 'Rua 2, n. 50 - Osório', '1985/10/18', '(51)99548-6259', '(51)99548-6259', 'tiago@gmail.com', '123456', 'M');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('André Pedry', '2456859570', '101.654.987-84', 'Rua 1, n. 50 - Osório', '1985/10/19', '(51)99548-6260', '(51)99548-6260', 'andre@gmail.com', '123456', 'M');
-INSERT INTO cliente (nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES ('Fernando Rossi', '2456859580', '111.654.987-84', 'Rua 11, n. 50 - Osório', '1985/10/20', '(51)99548-6261', '(51)99548-6261', 'fernando@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (1,'Agnes Cunha Marques', '9876543217', '012.345.678-89', 'Rua A nº 2', '1992-11-20', '(51)99999-9999', '(51)88888-8888', 'agnescunha20@gmail.com', '123456', 'F');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (2,'Adriana Machado', '2456859574', '321.654.987-84', 'Rua 9, n. 50 - Osório', '1985/10/11', '(51)99548-6251', '(51)99548-6251', 'adriana@gmail.com', '123456', 'F');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (3,'Adriano Azevedo', '2456859575', '221.654.987-84', 'Rua 10, n. 50 - Osório', '1985/10/10', '(51)99548-6252', '(51)99548-6252', 'adriano@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (4,'Rafael Cardoso', '2456859576', '121.654.987-84', 'Rua 8, n. 50 - Osório', '1985/10/12', '(51)99548-6253', '(51)99548-6253', 'rafael@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (5,'Carlos Adri', '2456859577', '421.654.987-84', 'Rua 7, n. 50 - Osório', '1985/10/13', '(51)99548-6254', '(51)99548-6254', 'carlos@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (6,'Eduardo Inglês', '2456859578', '521.654.987-84', 'Rua 6, n. 50 - Osório', '1985/10/14', '(51)99548-6255', '(51)99548-6255', 'eduardo@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (7,'Márcia Reck', '2456859579', '621.654.987-84', 'Rua 5, n. 50 - Osório', '1985/10/15', '(51)99548-6256', '(51)99548-6256', 'marcia@gmail.com', '123456', 'F');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (8,'Carla Miguel', '2456859573', '721.654.987-84', 'Rua 4, n. 50 - Osório', '1985/10/16', '(51)99548-6257', '(51)99548-6257', 'carla@gmail.com', '123456', 'F');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (9,'Carol Ferri', '2456859572', '821.654.987-84', 'Rua 3, n. 50 - Osório', '1985/10/17', '(51)99548-6258', '(51)99548-6258', 'carol@gmail.com', '123456', 'F');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (10,'Tiago Jesus', '2456859571', '921.654.987-84', 'Rua 2, n. 50 - Osório', '1985/10/18', '(51)99548-6259', '(51)99548-6259', 'tiago@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (11,'André Pedry', '2456859570', '101.654.987-84', 'Rua 1, n. 50 - Osório', '1985/10/19', '(51)99548-6260', '(51)99548-6260', 'andre@gmail.com', '123456', 'M');
+INSERT INTO cliente (id, nome, rg, cpf, endereco, data_nascimento, telefone1, telefone2, email, senha, sexo) VALUES (12,'Fernando Rossi', '2456859580', '111.654.987-84', 'Rua 11, n. 50 - Osório', '1985/10/20', '(51)99548-6261', '(51)99548-6261', 'fernando@gmail.com', '123456', 'M');
 
-INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('root', 'admin', '000.000.000-00', '00000000-00', '(51)99000-0000', '3000.00', '2016/12/21', 'Rua 1 - Osório/RS', 'root', 'root', 1);
-INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('Carolina Rossi', 'Recepção', '321.456.987-81', '9874561237-70', '(51)99000-0001', '1000.00', '2016/10/21', 'Rua 2 - Osório/RS', 'CarolinaRossi', '123456', 0);
-INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('Andreia Soares', 'Recepção', '321.456.987-82', '9874561237-71', '(51)99000-0002', '1000.00', '2016/09/21', 'Rua 3 - Osório/RS', 'AndreiaSoares', '123456', 0);
-INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('Carlos Rum', 'Administrativo', '321.456.987-83', '9874561237-72', '(51)99000-0003', '1000.00', '2016/08/21', 'Rua 4 - Osório/RS', 'CarlosRum', '123456', 0);
-INSERT INTO funcionario (nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES ('Fernando Paz', 'admin', '321.456.987-84', '9874561237-73', '(51)99000-0004', '3000.00', '2015/12/21', 'Rua 5 - Osório/RS', 'FernandoPaz', '123456', 1);
+INSERT INTO funcionario (id, nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES (1, 'root', 'admin', '000.000.000-00', '00000000-00', '(51)99000-0000', '3000.00', '2016/12/21', 'Rua 1 - Osório/RS', 'root', 'root', 1);
+INSERT INTO funcionario (id, nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES (2, 'Carolina Rossi', 'Recepção', '321.456.987-81', '9874561237-70', '(51)99000-0001', '1000.00', '2016/10/21', 'Rua 2 - Osório/RS', 'CarolinaRossi', '123456', 0);
+INSERT INTO funcionario (id, nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES (3, 'Andreia Soares', 'Recepção', '321.456.987-82', '9874561237-71', '(51)99000-0002', '1000.00', '2016/09/21', 'Rua 3 - Osório/RS', 'AndreiaSoares', '123456', 0);
+INSERT INTO funcionario (id, nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES (4, 'Carlos Rum', 'Administrativo', '321.456.987-83', '9874561237-72', '(51)99000-0003', '1000.00', '2016/08/21', 'Rua 4 - Osório/RS', 'CarlosRum', '123456', 0);
+INSERT INTO funcionario (id, nome, funcao, cpf, rg, celular, salario, admissao, endereco, login, senha, eh_admin) VALUES (5, 'Fernando Paz', 'admin', '321.456.987-84', '9874561237-73', '(51)99000-0004', '3000.00', '2015/12/21', 'Rua 5 - Osório/RS', 'FernandoPaz', '123456', 1);
 
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (1, 2, 1, 2, 1, '500.00', 'Pago');
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (2, 3, 1, 1, 3, '150.00', 'Pago');
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (5, 2, 3, 3, 5, '50.00', 'Pago');
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (11, 3, 4, 4, 1, '200.00', 'Pago');
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (1, 1, 2, 1, 2, 1, '500.00', 'Pago', 1);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (2, 2, 3, 1, 1, 3, '150.00', 'Pago', 2);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (3, 5, 2, 3, 3, 5, '50.00', 'Pago', 3);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (4, 11, 3, 4, 4, 1, '200.00', 'Pago', 4);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (5, 11, 3, 5, 4, 1, '100.00', 'Pago', 4);
 
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (11, 2, 1, 2, 1, '500.00', 'Pendente');
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (12, 3, 1, 1, 3, '150.00', 'Pendente');
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (13, 2, 3, 3, 5, '50.00', 'Pendente');
-INSERT INTO comanda (id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_) VALUES (14, 3, 4, 4, 1, '200.00', 'Pendente');
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (6, 11, 2, 1, 2, 1, '500.00', 'Pendente', 5);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (7, 12, 3, 1, 1, 3, '150.00', 'Pendente', 6);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (8, 12, 2, 3, 3, 5, '50.00', 'Pendente', 8);
+INSERT INTO comanda (id, id_cliente, id_funcionario, id_servico, id_quarto, quantidade, total, status_, num) VALUES (9, 14, 3, 4, 4, 1, '200.00', 'Pendente', 7);
 
 INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (1, 1, '2017/03/10', '2017/03/15', 'férias', 'Concluída');
 INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (2, 2, '2017/01/10', '2017/02/10', '', 'Concluída');
-INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (5, 9, '2017/03/10', '2017/03/15', 'férias', 'Concluída');
-INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (11, 10, '2017/01/10', '2017/02/15', '', 'Concluída');
-INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (11, 11, '2017/12/10', '2017/12/20', '', 'Aprovada');
-INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (12, 12, '2017/12/12', '2017/12/27', '', 'Aprovada');
-INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (13, 13, '2017/12/25', '2018/01/05', '', 'Solicitada');
-INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (14, 14, '2017/12/20', '2018/01/02', '', 'Solicitada');
+INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (3, 3, '2017/03/10', '2017/03/15', 'férias', 'Concluída');
+INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (4, 4, '2017/01/10', '2017/02/15', '', 'Concluída');
+INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (5, 5, '2017/12/10', '2017/12/20', '', 'Aprovada');
+INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (6, 6, '2017/12/12', '2017/12/27', '', 'Aprovada');
+INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (7, 7, '2017/12/25', '2018/01/05', '', 'Solicitada');
+INSERT INTO reserva (id_cliente, id_comanda, inicio, saida, motivo, status_reserva) VALUES (8, 8, '2017/12/20', '2018/01/02', '', 'Solicitada');

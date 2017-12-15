@@ -5,9 +5,6 @@
     var_dump($_POST);
 
     if(isset($_POST['Button_atualizar'])){
-        echo "<br>";
-        echo "entrei no if";
-        echo "<br>";
         $cliente1 = new Cliente();
         //não atualizavel
         $cliente1->setNome($_POST['nome_cliente']);
@@ -26,7 +23,7 @@
         echo "<br>";
         $banco = new Banco();
         $banco->atualizarCliente($cliente1);
-
         header('Location: ../view/telas/area_cliente.php');
+        echo"<script>alert('Dados cadastrados com sucesso!');</script>";
     }
 ?>
