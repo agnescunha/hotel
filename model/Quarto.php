@@ -6,6 +6,14 @@
         private $valor;
         private $classe;
 
+        public function Quarto($numQuarto,$descricao,$valor,$classe){
+            $this->setNumQuarto($numQuarto);
+            $this->setDescricao($descricao);
+            $this->setValor($valor);
+            $this->setClasse($classe);
+
+        }
+
         public function getId(){
             return $this->id;
         }
