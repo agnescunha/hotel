@@ -1,16 +1,16 @@
     <?php
        //deslogar do sistema - sessions e cookies
-        if(isset($_GET['botao_sair'])){
-          if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(
-              session_name(), '', time() - 42000,
-              $params["path"], $params["domain"],
-              $params["secure"], $params["httponly"]
-            );
-            header('Location: login.php');
-          }
+       /*if(isset($_GET['botao_sair'])){
+        if (ini_get("session.use_cookies")) {
+          $params = session_get_cookie_params();
+          setcookie(
+            session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+          );
+          header('Location: login.php');
         }
+      }  */ 
     ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -58,7 +58,13 @@
         $banco = new Banco();
         $cliente = $banco->pesquisarCliente("email",$_SESSION['cliente']);
       }
-      
+    
+      if(isset($_GET['botao_sair'])){
+          unset($_SESSION);
+          session_destroy();
+          header('Location: login.php');
+      }
+
       include 'cabecalho.html';
       
     ?>
@@ -69,6 +75,8 @@
           <button id = "button_sair" name="botao_sair" class="btn btn-primary" type="submit">Sair</button>
       </form>
     </div>
+
+    
     <section>
       <div class="container">
         <div class="row">
@@ -78,7 +86,7 @@
             <h3 class="section-heading text-uppercase" id="titulo">Dados Pessoais</h3>
           </div>
         </div>
-         <form id="areaForm" name="areaForm" method='post'>
+         <form id="areaForm" name="areaForm" action='../../controller/atualizar_cliente.php' method='post'>
          <div  id="area_cliente" class="container-fluid">
             <div class="form-group">
               <div class="row">
@@ -176,13 +184,13 @@
   
   <?php
   //atualizando o cliente (NAO ESTÁ FUNCIONANDO)
-    if(isset($_POST['Button_atualizar'])){
+    /*if(isset($_POST['Button_atualizar'])){
       $cliente->setEndereco($_POST["endereco_cliente"]);
       $cliente->setTelefone1($_POST["telefone_cliente"]);
       $cliente->setTelefone2($_POST["celular_cliente"]);
       $cliente->setSenha($_POST["senha_cliente"]);
       $banco->atualizarCliente($cliente);
-    }
+    }*/
   ?>
   
 </section>

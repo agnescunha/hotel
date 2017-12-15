@@ -147,7 +147,9 @@
                         , email = '".$cliente->getEmail()."' 
                         , senha = '".$cliente->getSenha()."' 
                         , sexo = '".$sexo."' 
-                    WHERE cpf = '".$cliente->getCpf()."';";          
+                    WHERE cpf = '".$cliente->getCpf()."';";
+                    
+            echo $sql;
             $this->abrirConexao();
             $retorno = $this->conexao->query($sql);
             $this->fecharConexao();
