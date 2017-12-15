@@ -146,8 +146,6 @@ class Reserva{
             $this->status = $status;
         }
 }
-
-<?php
     include 'model\Cliente';
     include 'model\Funcionario';
     include 'model\Servico';
