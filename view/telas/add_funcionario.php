@@ -124,8 +124,8 @@
   	  </div>
       <div class="form-group col-md-3">
         <label for="exampleInputEmail1">Permissão*</label><br>
-        Administrador&nbsp;<input type="radio" name="permissao" value=0>&nbsp;&nbsp;
-        Funcionario&nbsp;<input type="radio" name="permissao" value=1>
+        Administrador&nbsp;<input type="radio" name="permissao" value=1>&nbsp;&nbsp;
+        Funcionario&nbsp;<input type="radio" name="permissao" value=0>
       </div>
 	</div>
 	

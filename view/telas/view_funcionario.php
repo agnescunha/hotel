@@ -99,7 +99,7 @@
       <p><strong>Permissao</strong></p>";
 if ($funcionario->getEhAdmin() == 1) {
   echo "<p>Administrador</p>";
-}else if ($funcionario->getEhAdmin() == 1) {
+}else if ($funcionario->getEhAdmin() == 0) {
   echo "<p>Funcionário</p>";
 }
 
