@@ -8,6 +8,19 @@
 	margin-bottom: 3%;
 }
 
+#caixaLogin{
+	float: right;
+	margin-right: 2%;
+	margin-top: 6%;
+	border-radius: 20%;
+	color:black;
+	border-style: solid;
+	border-color:rgba(254,209,55,.2);
+	background: rgba(254,209,55,.2);
+	padding: 1%;
+	text-align: center;
+}
+
 <<<<<<< HEAD
 #historico_reservas{
 	margin: 0 0 5% 30%;
@@ -21,7 +34,7 @@
 	margin-left: 5%;
 }
 
-#button_cancelar{
+#button_cancelar, #button_sair{
 	width: 100%;
 	font-size: 85%;
 }

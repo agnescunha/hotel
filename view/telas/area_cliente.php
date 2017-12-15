@@ -35,7 +35,9 @@
   
       
       session_start();
-    
+
+      sleep(3);
+      
       if(!isset($_SESSION['cliente']) == true){
         unset($_SESSION['cliente']);
         header('Location: login.php');
@@ -49,6 +51,15 @@
       
     ?>
     
+    <div id = "caixaLogin">
+      <form method='post'>
+        <?php 
+          echo $cliente->getNome().'<br><br>';
+        ?>
+        <button id = "button_sair" class='btn btn-primary'>Sair</button>
+      </form>
+    </div>
+    
     <section>
       <div class="container">
         <div class="row">
@@ -58,7 +69,7 @@
             <h3 class="section-heading text-uppercase" id="titulo">Dados Pessoais</h3>
           </div>
         </div>
-         <form id="areaForm" name="areaForm" novalidate method='post'>
+         <form id="areaForm" name="areaForm" method='post'>
          <div  id="area_cliente" class="container-fluid">
             <div class="form-group">
               <div class="row">
@@ -145,7 +156,7 @@
             <div>
             <div class="clearfix"></div>
             <div class="col-lg-12 text-center">
-              <button id="Button_atualizar" class="btn btn-primary btn-xl text-uppercase" onclick="editar_cadastro()"> Atualizar
+              <button id="Button_atualizar" name="Button_atualizar" class="btn btn-primary btn-xl text-uppercase"> Atualizar
               </button>
             </div>
           </div>
@@ -153,6 +164,19 @@
       </form>
     </div>
   </div>
+  
+  <?php
+  //atualizando o cliente
+    if(isset($_POST['Button_atualizar'])){
+      $cliente->setEndereco($_POST["endereco_cliente"]);
+      $cliente->setTelefone1($_POST["telefone_cliente"]);
+      $cliente->setTelefone2($_POST["celular_cliente"]);
+      $cliente->setSenha($_POST["senha_cliente"]);
+      $banco->atualizarCliente($cliente);
+    }
+  ?>
+  
+  
 </section>
 <div class="col-lg-12 text-center">
  <a id="Button_fazer_reserva" class="btn btn-primary btn-xl text-uppercase" href = "reserva_cliente.php">REALIZAR NOVA RESERVA</a>
@@ -179,16 +203,16 @@
           </tr>
         </thead>
         <tbody>
-          <?php  
-            echo "<tr>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataI()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataF()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getQuarto()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDiaria()."'></input></td>";
-              echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getStatus()."'></input></td>";
-              echo "<td><button class='btn btn-primary' id='button_cancelar'>Cancelar</button></td>";
-            echo "</tr>";
+          <tr>
+          <?php 
+              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataI()."'></input></td>";
+              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDataF()."'></input></td>";
+              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getQuarto()."'></input></td>";
+              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getDiaria()."'></input></td>";
+              //echo "<td><input id = 'campos' disabled='disabled' readonly='readonly' type='text' value = '".$reserva->getStatus()."'></input></td>";
+              //echo "<td><button class='btn btn-primary' id='button_cancelar'>Cancelar</button></td>";
           ?>
+          </tr>
         </tbody>
       </table>
       <h4 class='section-heading text-uppercase' id="subtitulo">Aprovadas</h4>

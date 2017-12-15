@@ -21,10 +21,30 @@
   </head>
 
   <body id="reservas">
+  <?php
+      require_once '../../model/Banco.php';
+      require_once '../../model/Cliente.php';
+  
+      
+      session_start();
     
+      if(!isset($_SESSION['cliente']) == true){
+        unset($_SESSION['cliente']);
+        header('Location: login.php');
+      }
+      else{
+        $banco = new Banco();
+        $cliente = $banco->pesquisarCliente("email",$_SESSION['cliente']);
+      }
+    ?>
     <?php
       include 'cabecalho.html';
     ?>
+
+    <div id = "caixaLogin">
+      <?php echo $cliente->getNome().'<br><br>'?>
+      <button id = "button_sair" class='btn btn-primary'>Sair</button>
+    </div>
 
   <!-- reserva -->
   <section>
@@ -74,10 +94,10 @@
             </div>
           </form>
           <div class="row">
-              <div class="col-lg-12 text-center" style="margin-bottom: 5%; margin-right: 3%;">Ao confirmar sua solicitação de reserva ela será encaminhada para análise de disponibilidade de quarto, e poderá verificar seu status na área do cliente.</div>  
-              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center" style="margin-bottom: 10%; margin-right: 3%;"><span>Ao confirmar sua solicitação de reserva ela será encaminhada para análise de disponibilidade de quarto, e poderá verificar seu status na área do cliente.</span><br></div>  
               <div class="col-lg-12 text-center">
                 <button id="Button_Reserva" class="btn btn-primary btn-xl text-uppercase" type="submit">Reservar</button>
+                <a id="Button_voltar" class="btn btn-primary btn-xl text-uppercase" href = "area_cliente.php">Voltar</a>
               </div>
           </div>
   </section>

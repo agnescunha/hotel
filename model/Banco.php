@@ -41,8 +41,9 @@
                 $cliente->setEndereco($a['endereco']);
                 $aniversario = $a['data_nascimento'];
                     $ano = substr($aniversario,0,4);
-                    $mes = substr(substr($aniversario,5,7),0,2);
+                    $mes = substr(substr($aniversario,5,7),0,2); //2 substr pois está repetindo o dia
                     $dia = substr($aniversario,8,10);
+                    echo $ano."<br>".$mes."<br>".$dia."<br>";
                 $cliente->setAniversario($dia."/".$mes."/".$ano);
                 $cliente->setTelefone1($a['telefone1']);
                 $cliente->setTelefone2($a['telefone2']);
@@ -54,18 +55,38 @@
         }
         
         public function cadastrarCliente($cliente){
+
+            $_aniversario = $cliente->getAniversario();
+
+            $dia = substr($_aniversario,0,2);
+            $mes = substr($_aniversario,3,2);
+            $ano = substr($_aniversario,6,9);
+            $aniversario = $ano."/".$mes."/".$dia;
+
+            $a = strtolower($cliente->getSexo());
+            switch($a){
+                case ("feminino" || 'f') : 
+                    $sexo = "F";
+                    break;
+                case ("masculino" || 'm'):
+                    $sexo = "M";
+                    break;
+                case ("outros" || 'o'):
+                    $sexo = "O";
+                    break;
+            }
             
             $sql = "INSERT INTO cliente (nome,rg,cpf,endereco,data_nascimento,telefone1,telefone2,email,senha,sexo) 
                     VALUES ( '".$cliente->getNome()."'
                             ,'".$cliente->getRg()."'
                             ,'".$cliente->getCpf()."'
                             ,'".$cliente->getEndereco()."'
-                            ,'".$cliente->getAniversario()."'
+                            ,'".$aniversario."'
                             ,'".$cliente->getTelefone1()."'
                             ,'".$cliente->getTelefone2()."'
                             ,'".$cliente->getEmail()."'
                             ,'".$cliente->getSenha()."'
-                            ,'".$cliente->getSexo()."');";
+                            ,'".$sexo."');";
             
             $this->abrirConexao();
             $retorno = $this->conexao->query($sql);
@@ -95,25 +116,42 @@
         }
 
         public function atualizarCliente($cliente){
-            
+
+            $dia = substr($cliente->getAniversario(),0,2);
+            $mes = substr($cliente->getAniversario(),3,2);
+            $ano = substr($cliente->getAniversario(),6,9);
+            $aniversario = $ano."/".$mes."/".$dia;
+
+
+            $a = strtolower($cliente->getSexo());
+            switch($a){
+                case ("feminino" || 'f') : 
+                    $sexo = "F";
+                    break;
+                case ("masculino" || 'm'):
+                    $sexo = "M";
+                    break;
+                case ("outros" || 'o'):
+                    $sexo = "O";
+                    break;
+            }
+
             $sql = "UPDATE cliente 
-                    SET
-                        nome = '".$cliente->getNome()."'
-                        ,rg = '".$cliente->getRg()."' 
-                        ,cpf = '".$cliente->getCpf()."' 
-                        ,endereco = '".$cliente->getEndereco()."' 
-                        ,data_nascimento = '".$cliente->getAniversario()."' 
-                        ,telefone1 = '".$cliente->getTelefone1()."'
-                        ,telefone2 = '".$cliente->getTelefone2()."' 
-                        ,email = '".$cliente->getEmail()."' 
-                        ,senha = '".$cliente->getSenha()."' 
-                        ,sexo = '".$cliente->getSexo()."'
-                    WHERE cpf = '".$cliente->getCpf()."';";
-            
+                    SET   nome = '".$cliente->getNome()."' 
+                        , rg = '".$cliente->getRg()."' 
+                        , cpf ='".$cliente->getCpf()."' 
+                        , endereco = '".$cliente->getEndereco()."' 
+                        , data_nascimento = '".$aniversario."' 
+                        , telefone1 = '".$cliente->getTelefone1()."' 
+                        , telefone2 = '".$cliente->getTelefone2()."' 
+                        , email = '".$cliente->getEmail()."' 
+                        , senha = '".$cliente->getSenha()."' 
+                        , sexo = '".$sexo."' 
+                    WHERE cpf = '".$cliente->getCpf()."';";          
             $this->abrirConexao();
             $retorno = $this->conexao->query($sql);
             $this->fecharConexao();
             return $retorno;
-        }
+        }   
     }
 ?>

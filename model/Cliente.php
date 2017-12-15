@@ -66,20 +66,11 @@
         }
 
         public function getAniversario(){
-            $_aniversario = $this->aniversario;
-                //converter a data para o padrao PT_BR
-                $ano = substr($_aniversario,0,4);
-                $mes = substr(substr($_aniversario,5,7),0,2); //2 substr pois está repetindo o dia
-                $dia = substr($_aniversario,8,10);
-            return $dia."/".$mes."/".$ano;
+            return $this->aniversario;
         }
 
         public function setAniversario($_aniversario){
-            //converter data para o padrao Americano
-            $dia = substr($_aniversario,0,2);
-            $mes = substr($_aniversario,3,2);
-            $ano = substr($_aniversario,6,9);
-            $this->aniversario = $ano."/".$mes."/".$dia;
+            $this->aniversario = $_aniversario;
         }
 
         public function getTelefone1(){
@@ -130,18 +121,7 @@
         }
 
         public function setSexo($_sexo){
-            $a = strtolower($_sexo);
-            switch($a){
-                case ("feminino" || 'f') : 
-                    $this->sexo = "F";
-                    break;
-                case ("masculino" || 'm'):
-                    $this->sexo = "M";
-                    break;
-                case ("outros" || 'o'):
-                    $this->sexo = "O";
-                    break;
-            }
+            $this->sexo = $_sexo;
         }
     }
 ?>
