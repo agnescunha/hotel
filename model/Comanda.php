@@ -232,5 +232,4 @@ class Reserva{
             $this->status = $_status;
         }
     }
->>>>>>> 64cd47947d79e5929a9fc7d7ab703a66aba211a4
 ?>
