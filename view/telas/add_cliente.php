@@ -37,7 +37,8 @@
             echo "<script type=\"text/javascript\">alert(\"Cpf já cadastrado!\") </script>";
           }
     }else{
-         $cliente = new Cliente($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha,$sexo);
+         $cliente = new Cliente();
+         $cliente->setar($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha,$sexo);
           $controle->insert($cliente);
           header("Location: index_restrito.php");
     }

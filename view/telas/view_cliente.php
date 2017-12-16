@@ -15,7 +15,8 @@
     $controle = new ClienteControle();
      $id = $_GET["id"];
   if (isset($_POST['update'])) {
-       $cliente = new Cliente($_POST['nome'],$_POST['rg'],$_POST['cpf'],$_POST['endereco'],$_POST['aniversario'],$_POST['telefone1'],
+       $cliente = new Cliente();
+       $cliente->setar($_POST['nome'],$_POST['rg'],$_POST['cpf'],$_POST['endereco'],$_POST['aniversario'],$_POST['telefone1'],
           $_POST['telefone2'],$_POST['email'],$_POST['senha'],$_POST['gender']);
        $cliente->setId($id);
        $controle->update($cliente);
