@@ -1,12 +1,11 @@
 <?php
     require_once 'Cliente.php';
-    require_once 'Comanda.php';
 
     class Banco{
         var $endereco = 'localhost';
         var $username = 'root';
         //var $senha = '';
-        var $senha = 'heinke1985'; //Senha MySQL Agnes(casa)
+        var $senha = ''; //Senha MySQL Agnes(casa)
         var $database = 'hotel';
         
         private $conexao;
@@ -44,6 +43,7 @@
                     $ano = substr($aniversario,0,4);
                     $mes = substr(substr($aniversario,5,7),0,2); //2 substr pois está repetindo o dia
                     $dia = substr($aniversario,8,10);
+                    echo $ano."<br>".$mes."<br>".$dia."<br>";
                 $cliente->setAniversario($dia."/".$mes."/".$ano);
                 $cliente->setTelefone1($a['telefone1']);
                 $cliente->setTelefone2($a['telefone2']);
@@ -147,88 +147,11 @@
                         , email = '".$cliente->getEmail()."' 
                         , senha = '".$cliente->getSenha()."' 
                         , sexo = '".$sexo."' 
-                    WHERE cpf = '".$cliente->getCpf()."';";
-                    
-            echo $sql;
+                    WHERE cpf = '".$cliente->getCpf()."';";          
             $this->abrirConexao();
             $retorno = $this->conexao->query($sql);
             $this->fecharConexao();
             return $retorno;
-        } 
-        
-        public function reservasPendentes($cliente){
-            $sql = "SELECT r.id
-                , r.id_cliente
-                , r.inicio
-                , r.saida
-                , r.status_reserva
-                , q.id
-                , q.valor
-                , q.classe
-                , s.id
-                , c.quantidade
-                , c.total
-                , c.num 
-            FROM 
-                reserva as r join 
-                comanda as c 
-                    on r.id_comanda = c.id join 
-                quarto as q
-                    on c.id_quarto = q.id join
-                servico as s 
-                    on c.id_servico = s.id
-            WHERE 
-                r.id_cliente = '".$cliente->getId()."'AND
-                r.status_reserva = 'Solicitada';";
-            
-            $this->abrirConexao();
-            $retorno = $this->conexao->query($sql);
-            $this->fecharConexao();
-            return $retorno;
-        }
-
-        public function ReservasConcluidas($cliente){
-            $sql = "SELECT r.id
-                , r.id_cliente
-                , r.inicio
-                , r.saida
-                , r.status_reserva
-                , q.id
-                , q.valor
-                , q.classe
-                , q.num_quarto
-                , s.id
-                , c.quantidade  
-                , c.total
-                , c.num 
-                , datediff(r.saida,r.inicio) as dias
-            FROM 
-                reserva as r join 
-                comanda as c 
-                    on r.id_comanda = c.id join 
-                quarto as q
-                    on c.id_quarto = q.id join
-                servico as s 
-                    on c.id_servico = s.id
-            WHERE 
-                r.id_cliente = '".$cliente->getId()."' AND (
-                r.status_reserva = 'Aprovada' OR r.status_reserva = 'Concluida');";
-            
-            $this->abrirConexao();
-            $retorno = $this->conexao->query($sql);
-            $this->fecharConexao();
-            return $retorno;
-        }
-    
-        public function pesquisarQuartos(){
-            $sql = "SELECT * FROM quarto";
-    
-            $this->abrirConexao();
-            $retorno = $this->conexao->query($sql);
-            $this->fecharConexao();
-            return $retorno;
-        }
+        }   
     }
-
-    
 ?>
