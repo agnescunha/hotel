@@ -16,7 +16,8 @@
 			$clientes=array();
 			if (mysqli_num_rows($result) > 0) {
    				 while($linha = mysqli_fetch_assoc($result)) {
-					$cliente = new Cliente($linha['nome'],$linha['rg'],$linha['cpf'],$linha['endereco'],$linha['data_nascimento'],$linha['telefone1'],
+					$cliente = new Cliente();
+					$cliente->setar($linha['nome'],$linha['rg'],$linha['cpf'],$linha['endereco'],$linha['data_nascimento'],$linha['telefone1'],
 					$linha['telefone2'],$linha['email'],$linha['senha'],$linha['sexo']);
 				 $cliente->setId($linha['id']);
 				 array_push($clientes, $cliente);
@@ -36,7 +37,8 @@
 			$cliente= null;
 			if (mysqli_num_rows($result) > 0) {
    				$linha = mysqli_fetch_assoc($result);
-					$cliente = new Cliente($linha['nome'],$linha['rg'],$linha['cpf'],$linha['endereco'],$linha['data_nascimento'],$linha['telefone1'],
+					$cliente = new Cliente();
+					$cliente->setar($linha['nome'],$linha['rg'],$linha['cpf'],$linha['endereco'],$linha['data_nascimento'],$linha['telefone1'],
 					$linha['telefone2'],$linha['email'],$linha['senha'],$linha['sexo']);
 				 	$cliente->setId($linha['id']);		
 			}else{
@@ -101,7 +103,8 @@
 			$clientes=array();
 			if (mysqli_num_rows($result) > 0) {
    				while($linha = mysqli_fetch_assoc($result)) {
-					$cliente = new Cliente($linha['nome'],$linha['rg'],$linha['cpf'],$linha['endereco'],$linha['data_nascimento'],$linha['telefone1'],
+					$cliente = new Cliente();
+					$cliente->setar($linha['nome'],$linha['rg'],$linha['cpf'],$linha['endereco'],$linha['data_nascimento'],$linha['telefone1'],
 					$linha['telefone2'],$linha['email'],$linha['senha'],$linha['sexo']);
 				 $cliente->setId($linha['id']);
 				 array_push($clientes, $cliente);
