@@ -12,7 +12,7 @@
         private $senha;
         private $sexo;
 
-        public function Cliente($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha,$sexo){
+        public function __construct($nome,$rg,$cpf,$endereco,$aniversario,$telefone1,$telefone2,$email,$senha,$sexo){
             $this->setNome($nome);
             $this->setCpf($cpf);
             $this->setRg($rg);
