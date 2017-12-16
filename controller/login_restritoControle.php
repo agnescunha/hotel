@@ -30,6 +30,7 @@
 	}
 
 	if (isset($_GET['sair'])) {
+		session_start();
 		session_destroy();
 		header("Location: ../view/telas/login_restrito.php");
 	}
