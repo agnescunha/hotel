@@ -1,9 +1,9 @@
 <?php
-require_once '../../model/Servico.php';
+require_once '../../model/Funcionario.php';
 require_once '../../controller/ServicoControle.php';
 session_start();
 if($_SESSION['logado'] == TRUE){
-    if ($_SESSION['servico']->getEhAdmin() == 1) {
+    if ($_SESSION['funcionario']->getEhAdmin() == 1) {
         include 'menu_admin.html';
     }else{
         include 'menu_func.html';
